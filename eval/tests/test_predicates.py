@@ -90,3 +90,15 @@ def test_gym_prefix_can_plant_many_decoys(small_world):
     for pid in [target, *decoys]:
         p.plant(db, rng, ctx, pid)
     assert len(set(db.ids(p.sql(ctx)))) >= 200
+
+
+@pytest.mark.parametrize("kind", sorted(REGISTRY))
+def test_text_is_a_third_person_verb_phrase(small_world, kind):
+    db, rng, tier, info = small_world
+    target, speaker = sample_people(db, rng, 2)
+    ctx = make_ctx(info, known=[("murderer", speaker)])
+    p = REGISTRY[kind].sample(db, rng, target, ctx)
+    for _ in range(20):
+        t = p.text(rng, ctx)
+        first = t.split()[0].lower()
+        assert first not in {"i", "it", "the", "they", "he", "she"}, t

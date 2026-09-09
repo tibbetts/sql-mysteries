@@ -208,7 +208,7 @@ class HairColor(_LicenseAttr):
 
     def text(self, rng, ctx):
         v = self.params["value"]
-        return rng.choice([f"had {v} hair", f"{v} hair, I remember that clearly", f"the hair was {v}"])
+        return rng.choice([f"had {v} hair", f"has {v} hair"])
 
 
 @register
@@ -220,7 +220,7 @@ class EyeColor(_LicenseAttr):
 
     def text(self, rng, ctx):
         v = self.params["value"]
-        return rng.choice([f"had {v} eyes", f"I noticed the eyes were {v}"])
+        return rng.choice([f"had {v} eyes", f"has {v} eyes"])
 
 
 @register
@@ -233,7 +233,7 @@ class Gender(_LicenseAttr):
     def text(self, rng, ctx):
         v = self.params["value"]
         noun = "man" if v == "male" else "woman"
-        return rng.choice([f"was a {noun}", f"it was definitely a {noun}"])
+        return rng.choice([f"was a {noun}", f"is a {noun}"])
 
 
 @register
@@ -263,7 +263,7 @@ class Car(Predicate):
 
     def text(self, rng, ctx):
         c = f"{self.params['make']} {self.params['model']}"
-        return rng.choice([f"drives a {c}", f"got into a {c}", f"I saw a {c}, that was the car"])
+        return rng.choice([f"drives a {c}", f"got into a {c}"])
 
 
 @register
@@ -369,7 +369,7 @@ class PlateFragment(Predicate):
 
     def text(self, rng, ctx):
         f = self.params["fragment"]
-        return rng.choice([f'the license plate had "{f}" in it', f'I only caught part of the plate: "{f}"'])
+        return rng.choice([f'drove a car whose license plate had "{f}" in it', f'has a license plate containing "{f}"'])
 
 
 # ---------- address predicates ----------
@@ -530,7 +530,7 @@ class GymCheckinWindow(Predicate):
     def text(self, rng, ctx):
         d, lo, hi = human(self.params["date"]), human_time(self.params["t_lo"]), human_time(self.params["t_hi"])
         return rng.choice([
-            f"I recognized them from my gym, Get Fit Now; they checked in on {d} between {lo} and {hi}",
+            f"checked in at the Get Fit Now gym on {d} sometime between {lo} and {hi}",
             f"was working out at Get Fit Now on {d}, arriving sometime between {lo} and {hi}",
         ])
 
