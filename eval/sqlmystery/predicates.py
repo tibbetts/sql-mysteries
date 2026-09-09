@@ -31,7 +31,7 @@ class DirtyFlags:
 
 @dataclass
 class Ctx:
-    info: WorldInfo
+    info: WorldInfo | None      # None is allowed for sql()-only use, e.g. verification
     dirty: DirtyFlags
     known: list[tuple[str, int]] = field(default_factory=list)  # (role, person_id); last is the speaker
     reserved: set[str] = field(default_factory=set)

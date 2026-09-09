@@ -58,14 +58,14 @@ def _fill(rng: random.Random, template: str, info: WorldInfo) -> str:
     )
 
 
-def populate(db: Db, rng: random.Random, tier: Tier, crime_date: int) -> WorldInfo:
+def populate(db: Db, rng: random.Random, tier: Tier, crime_date: int, crime_city: str = "SQL City") -> WorldInfo:
     n = tier.persons
     n_streets = max(20, min(400, n // 100))
     streets = sorted({f"{b} {rng.choice(N.STREET_SUFFIXES)}" for b in rng.sample(N.STREET_BASES, min(len(N.STREET_BASES), n_streets))})
     cities = list(N.CITIES)
     info = WorldInfo(
         crime_date=crime_date,
-        crime_city="SQL City",
+        crime_city=crime_city,
         date_start=add_days(crime_date, -400),
         date_end=add_days(crime_date, 100),
         streets=streets,
