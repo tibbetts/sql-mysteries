@@ -91,9 +91,12 @@ _ALNUM = "0123456789ABCDEFGHJKLMNPQRSTUVWXYZ"
 
 
 def _new_gym_id(db: Db, rng: random.Random, prefix: str) -> str:
+    """Membership ids are 5 or 6 characters. With a prefix, fill to 6 so the id space stays large."""
     while True:
-        body = f"{rng.randint(10, 99)}{rng.choice('ABCDEFGHJKLMNPQRSTUVWXYZ')}{rng.choice(_ALNUM)}{rng.choice(_ALNUM)}"
-        gid = (prefix + body)[:5] if prefix else body
+        if prefix:
+            gid = prefix + "".join(rng.choice(_ALNUM) for _ in range(6 - len(prefix)))
+        else:
+            gid = f"{rng.randint(10, 99)}{rng.choice('ABCDEFGHJKLMNPQRSTUVWXYZ')}{rng.choice(_ALNUM)}{rng.choice(_ALNUM)}"
         if not db.execute("SELECT 1 FROM get_fit_now_member WHERE id=?", (gid,)).fetchone():
             return gid
 

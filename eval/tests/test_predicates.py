@@ -79,3 +79,14 @@ def test_dirty_flags_change_sql_for_event_and_checkin_kinds(small_world):
     for kind in ["event_count", "gym_checkin_window"]:
         p = REGISTRY[kind].sample(db, rng, target, clean)
         assert p.sql(clean) != p.sql(dirty)
+
+
+def test_gym_prefix_can_plant_many_decoys(small_world):
+    db, rng, tier, info = small_world
+    ctx = make_ctx(info)
+    target, *decoys = sample_people(db, rng, 200)
+    p = REGISTRY["gym_status_prefix"].sample(db, rng, target, ctx)
+    p.params["prefix"] = p.params["prefix"][:3].ljust(3, "Z")
+    for pid in [target, *decoys]:
+        p.plant(db, rng, ctx, pid)
+    assert len(set(db.ids(p.sql(ctx)))) >= 200
