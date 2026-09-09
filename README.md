@@ -33,6 +33,10 @@ SELECT value FROM solution;
 ```
 
 
+## Benchmarking models
+
+The original mystery is memorized by language models and leaks its own answer through the `check_solution` trigger, so it is not a useful eval. The [`eval/`](eval/) directory contains a procedural generator that produces fresh, verified mysteries at four difficulty tiers, plus a harness for running Claude models on them. See [eval/README.md](eval/README.md).
+
 ## Authors
 
 * [Joon Park](https://twitter.com/JoonParkMusic)
