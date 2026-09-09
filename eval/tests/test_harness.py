@@ -111,3 +111,9 @@ def test_wilson_interval():
     assert hi == 1.0 and 0.65 < lo < 0.8
     lo, hi = wilson(5, 10)
     assert 0.2 < lo < 0.5 < hi < 0.8
+
+
+def test_solve_enables_prompt_caching(instance):
+    client = FakeClient([tool_use_msg("submit_answer", {"chain": [], "murderer": "x", "mastermind": "y"})])
+    solve(client, "claude-opus-5", instance, max_turns=2, thinking=False)
+    assert client.calls[0]["cache_control"] == {"type": "ephemeral"}

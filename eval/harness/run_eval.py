@@ -84,7 +84,8 @@ def solve(client, model: str, instance: Path, max_turns: int = 60, thinking: boo
     try:
         while turns < max_turns:
             turns += 1
-            kwargs = dict(model=model, max_tokens=max_tokens, system=SYSTEM, tools=TOOLS, messages=messages)
+            kwargs = dict(model=model, max_tokens=max_tokens, system=SYSTEM, tools=TOOLS, messages=messages,
+                          cache_control={"type": "ephemeral"})  # auto-cache the growing prefix
             if thinking:
                 kwargs["thinking"] = {"type": "adaptive"}
             if effort:
