@@ -24,6 +24,15 @@ def parse_seeds(spec: str) -> list[int]:
     return out
 
 
+def resolve_tier(args):
+    tier = TIERS[args.tier]
+    if args.persons:
+        tier = tier.scaled(args.persons)
+    if args.branching is not None or args.fuzzy:
+        tier = tier.with_knobs(branching=args.branching, fuzzy=True if args.fuzzy else None)
+    return tier
+
+
 def instance_dir(root: Path, tier: str, seed: int) -> Path:
     return Path(root) / tier / f"seed_{seed:04d}"
 
@@ -35,12 +44,16 @@ def main(argv=None) -> int:
     m = sub.add_parser("make", help="generate one instance")
     m.add_argument("--seed", type=int, required=True)
     m.add_argument("--tier", choices=TIERS, default="medium")
+    m.add_argument("--branching", type=int, help="rivals per hop")
+    m.add_argument("--fuzzy", action="store_true", help="vague clue wording")
     m.add_argument("--persons", type=int, help="override population size")
     m.add_argument("--out", type=Path, required=True)
 
     b = sub.add_parser("batch", help="generate many instances under OUT/<tier>/seed_NNNN")
     b.add_argument("--seeds", default="0-9", help="e.g. 0-99 or 1,5,9")
     b.add_argument("--tier", choices=TIERS, default="medium")
+    b.add_argument("--branching", type=int, help="rivals per hop")
+    b.add_argument("--fuzzy", action="store_true", help="vague clue wording")
     b.add_argument("--persons", type=int)
     b.add_argument("--out", type=Path, required=True)
 
@@ -53,19 +66,15 @@ def main(argv=None) -> int:
 
     args = ap.parse_args(argv)
     if args.cmd == "make":
-        tier = TIERS[args.tier]
-        if args.persons:
-            tier = tier.scaled(args.persons)
+        tier = resolve_tier(args)
         t = time.time()
         out = make(args.seed, tier, args.out)
         print(f"wrote {out} in {time.time() - t:.1f}s")
     elif args.cmd == "batch":
-        tier = TIERS[args.tier]
-        if args.persons:
-            tier = tier.scaled(args.persons)
+        tier = resolve_tier(args)
         for seed in parse_seeds(args.seeds):
             t = time.time()
-            out = make(seed, tier, instance_dir(args.out, args.tier, seed))
+            out = make(seed, tier, instance_dir(args.out, tier.name, seed))
             print(f"wrote {out} in {time.time() - t:.1f}s", flush=True)
     elif args.cmd == "verify":
         verify(args.dir)

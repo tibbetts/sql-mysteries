@@ -11,7 +11,7 @@ from .predicates import DirtyFlags
 
 
 def apply_dirty(db: Db, rng: random.Random, chain: Chain, flags: DirtyFlags) -> None:
-    protect = {h.person_id for h in chain.hops}
+    protect = set(chain.protected_ids)
     if flags.event_date_text:
         _event_dates_to_text(db)
     if flags.checkin_time_text:

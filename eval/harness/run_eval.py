@@ -14,7 +14,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-from sqlmystery.__main__ import instance_dir, parse_seeds
+from sqlmystery.__main__ import instance_dir, parse_seeds, resolve_tier
 from sqlmystery.config import TIERS
 from sqlmystery.generate import make
 from sqlmystery.grade import grade
@@ -161,6 +161,8 @@ def main(argv=None) -> int:
     ap.add_argument("--tier", choices=TIERS, default="medium")
     ap.add_argument("--seeds", default="0-9")
     ap.add_argument("--persons", type=int, help="override population size when generating")
+    ap.add_argument("--branching", type=int, help="rivals per hop")
+    ap.add_argument("--fuzzy", action="store_true", help="vague clue wording")
     ap.add_argument("--model", default="claude-opus-5")
     ap.add_argument("--effort", choices=["low", "medium", "high", "xhigh", "max"])
     ap.add_argument("--no-thinking", action="store_true", help="omit the thinking parameter (required for Haiku 4.5)")
@@ -173,16 +175,15 @@ def main(argv=None) -> int:
     import anthropic  # imported here so the generator stays dependency-free
 
     client = anthropic.Anthropic()
-    tier = TIERS[args.tier]
-    if args.persons:
-        tier = tier.scaled(args.persons)
-    max_turns = args.max_turns or {"easy": 30, "medium": 50, "hard": 80, "extreme": 120}[args.tier]
+    tier = resolve_tier(args)
+    base = args.tier.split("-")[0]
+    max_turns = args.max_turns or {"easy": 30, "medium": 50, "hard": 80, "extreme": 120}[base] * (2 if tier.branching else 1)
     thinking = not args.no_thinking and "haiku-4-5" not in args.model
-    out_dir = args.out / args.tier / args.model.replace("/", "_")
+    out_dir = args.out / tier.name / args.model.replace("/", "_")
     out_dir.mkdir(parents=True, exist_ok=True)
 
     def one(seed: int) -> dict:
-        inst = instance_dir(args.instances, args.tier, seed)
+        inst = instance_dir(args.instances, tier.name, seed)
         if not (inst / "answer.json").exists():
             make(seed, tier, inst)
         res_path = out_dir / f"seed_{seed:04d}.json"
@@ -191,14 +192,14 @@ def main(argv=None) -> int:
         r = solve(client, args.model, inst, max_turns=max_turns, thinking=thinking, effort=args.effort)
         res_path.write_text(json.dumps(r, indent=2))
         g = r["grade"]
-        print(f"{args.tier} seed {seed}: mastermind={'PASS' if g['mastermind_correct'] else 'fail'} "
+        print(f"{tier.name} seed {seed}: mastermind={'PASS' if g['mastermind_correct'] else 'fail'} "
               f"murderer={'PASS' if g['murderer_correct'] else 'fail'} queries={r['queries']} turns={r['turns']} stop={r['stop']}", flush=True)
         return r
 
     seeds = parse_seeds(args.seeds)
     with ThreadPoolExecutor(max_workers=args.workers) as ex:
         results = list(ex.map(one, seeds))
-    summary = {"tier": args.tier, "model": args.model, "effort": args.effort, **summarize(results)}
+    summary = {"tier": tier.name, "model": args.model, "effort": args.effort, **summarize(results)}
     (out_dir / "summary.json").write_text(json.dumps(summary, indent=2))
     print(json.dumps(summary, indent=2))
     return 0

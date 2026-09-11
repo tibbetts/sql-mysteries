@@ -4,6 +4,7 @@ from __future__ import annotations
 import random
 
 from .chain import Chain, Clue, Hop
+from .dates import human_time
 from .db import Db
 from .predicates import REGISTRY, Ctx, DirtyFlags
 from .world import WorldInfo
@@ -25,7 +26,7 @@ def _report(rng: random.Random, chain: Chain) -> str:
         f"Security footage shows that there were {len(witnesses)} witnesses.",
         f"Responding officers located {len(witnesses)} witnesses who have not yet given statements.",
     ])
-    parts = [intro]
+    parts = [f"The murder took place at approximately {human_time(chain.crime_time)}.", intro]
     for i, w in enumerate(witnesses):
         parts.append(_sentences(rng, f"The {ORDINALS[i]} witness", w.clues))
     return " ".join(parts)
@@ -60,8 +61,7 @@ def _hired_transcript(rng: random.Random, role: str, clues: list[Clue]) -> str:
 
 def write_narrative(db: Db, rng: random.Random, chain: Chain, info: WorldInfo) -> None:
     ctx = Ctx(info=info, dirty=chain.dirty, known=[])
-    chain_ids = [h.person_id for h in chain.hops]
-    db.executemany("DELETE FROM interview WHERE person_id=?", [(pid,) for pid in chain_ids])
+    db.executemany("DELETE FROM interview WHERE person_id=?", [(pid,) for pid in chain.protected_ids])
 
     # crime scene report for the murder
     db.execute("INSERT INTO crime_scene_report VALUES (?,?,?,?)",
@@ -88,6 +88,20 @@ def write_narrative(db: Db, rng: random.Random, chain: Chain, info: WorldInfo) -
         else:
             text = _hired_transcript(rng, hop.role, clues)
         db.execute("INSERT INTO interview VALUES (?,?)", (pid, text))
+
+    # rivals: same framing as a real hop, but the clues lead nowhere, or an alibi
+    for hop in chain.hops:
+        for r in hop.rivals:
+            ex = r.exclusion
+            if ex.kind == "alibi":
+                start = human_time(ex.params["start_time"])
+                text = rng.choice([
+                    f"I know how this looks, but I could not have done it. I was on the phone from about {start} that evening for over an hour. Check the phone records.",
+                    f"Whoever you are looking for, it is not me. I got a call around {start} and was on the phone for more than an hour. The phone company will confirm it.",
+                ])
+            else:
+                text = _hired_transcript(rng, hop.role, ex.clues)
+            db.execute("INSERT INTO interview VALUES (?,?)", (r.person_id, text))
 
     # rumour transcripts: random people repeating plausible but unrelated clue-shaped facts
     n_rumours = max(20, min(500, db.one("SELECT count(*) FROM person")[0] // 200))

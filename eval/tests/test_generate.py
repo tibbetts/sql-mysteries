@@ -62,3 +62,28 @@ def test_hard_tier_makes_with_dirty_flags(tmp_path):
     answer = json.loads((out / "answer.json").read_text())
     assert answer["dirty"]["event_date_text"] is True
     verify(out)
+
+
+def test_branching_instance_verifies_and_corrupted_alibi_fails(tmp_path):
+    out = make(seed=6, tier=TIERS["hard-full"].scaled(3000), out_dir=tmp_path / "e")
+    answer = json.loads((out / "answer.json").read_text())
+    assert answer["tier"] == "hard-full" and answer["crime_time"]
+    rivals = [r for h in answer["hops"] for r in h["rivals"]]
+    assert rivals
+    verify(out)
+    alibi = next(r for r in rivals if r["exclusion"]["kind"] == "alibi")
+    conn = sqlite3.connect(out / "mystery.db")
+    conn.execute("DELETE FROM phone_call WHERE caller_id=? AND date=?", (alibi["person_id"], answer["crime_date"]))
+    conn.commit()
+    conn.close()
+    with pytest.raises(VerificationError):
+        verify(out)
+
+
+def test_cli_knob_overrides(tmp_path):
+    from sqlmystery.__main__ import main
+    main(["make", "--seed", "7", "--tier", "medium", "--persons", "3000", "--branching", "1", "--fuzzy",
+          "--out", str(tmp_path / "f")])
+    answer = json.loads((tmp_path / "f" / "answer.json").read_text())
+    assert answer["tier"] == "medium-b1-fuzzy"
+    assert any(h["rivals"] for h in answer["hops"])
