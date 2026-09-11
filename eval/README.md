@@ -41,6 +41,11 @@ Tiers:
 | hard | 200k | 8 | 3 to 4 | 50 | yes | yes | 13 s | 102 MB |
 | extreme | 1M | 12 | 4 | 100 | yes | yes | 153 s | 512 MB |
 
+Two knobs raise difficulty beyond the base tiers, and can be set on any tier with `--branching N` and `--fuzzy` (named combinations `hard-branching`, `hard-fuzzy`, `hard-full`, `extreme-full` exist for convenience):
+
+- **Branching.** At every hop from the murderer to the last accomplice, N rivals satisfy the full clue set alongside the true person. Rivals of the murderer have a verifiable alibi: the crime report states the time of the murder and the rival's transcript points at a phone call in the database that covers it. Rivals at later hops have transcripts framed exactly like a real hop whose clues match nobody. The solver has to carry several candidates, read all of their transcripts, notice a branch is dead, and backtrack. Ground truth stays verifiable: the verifier checks that the conjunction returns exactly the true person plus rivals, that each dead-end clue set returns nothing, that each alibi call exists, and that the murderer has none.
+- **Fuzzy.** Seven clue kinds switch to vague wording with a fixed vocabulary: "about 5'8\"", "around 40", "a few times" (2 to 4), "several" (3 to 5), "in the afternoon", "a couple of days before the murder", "drives something German", "a five-figure sum". The planted person sits in the middle of the widest reasonable reading, so any sensible interpretation includes them, but a narrow one may not exclude the decoys.
+
 Dirty data (hard and extreme): event dates stored as `YYYY-MM-DD` text while other tables use integer `YYYYMMDD`, mixed `HHMM` integers and `HH:MM` text in gym check-in times (extreme only), mangled name casing and whitespace, duplicate persons with NULL license and SSN, NULL heights. Chain persons are never mangled, so grading by name stays sound.
 
 Random rumour transcripts repeat clue-shaped facts about unrelated people, so text search over interviews is not a shortcut.
@@ -89,6 +94,14 @@ Subagents driving `sqlite3` directly (not the API harness, which needs credentia
 | Sonnet 5 | hard | 0 | full chain of 8 correct | 44 | 138 s |
 | Haiku 4.5 | hard | 0 | full chain of 8 correct | 36 | 212 s |
 
+Harness runs on Sep 9, 2026 (interrupted after about an hour, so partial):
+
+| model | tier | seeds | mastermind | median queries |
+|---|---|---|---|---|
+| Haiku 4.5 | hard | 11 | 11/11 | 65 |
+| Sonnet 5 | hard | 2 | 2/2 | 40 |
+| Sonnet 5 | extreme at 100k persons, chain 12 | 2 | 2/2 | 67 |
+
 Read this as a floor, not a ceiling: with one seed each, even the smallest model clears the hard tier. Every clue is precise and maps to one SQL predicate, so the chain is long but each hop is mechanical. What separates models at this point is efficiency (queries, turns, tokens) and robustness across many seeds. To make the top tiers discriminate on correctness, the next additions should be clue kinds that need reasoning rather than translation: relative clues (taller than the murderer, lives within a few house numbers of the witness), two-hop relations (called someone who called the victim), contradictions between witnesses with a hint about which one is reliable, and clue text with less templated phrasing.
 
 ## Layout
@@ -116,6 +129,7 @@ Add a clue kind by subclassing `Predicate` in `predicates.py` and registering it
 
 ## Future work
 
+- Ablation results for the branching and fuzzy knobs: `runs/knob_ablation.sh` runs Sonnet 5 on hard-full, hard-branching, and hard-fuzzy, and Haiku 4.5 on hard-full, 10 seeds each.
 - An unreliable witness whose statement is flagged as uncertain and partly wrong.
 - Multiple murders in one database so the date and city filter matters more.
 - Renamed columns per seed to defeat template overfitting.
