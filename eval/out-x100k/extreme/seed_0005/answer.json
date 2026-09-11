@@ -1,0 +1,612 @@
+{
+  "tier": "extreme",
+  "seed": 5,
+  "crime_date": 20170908,
+  "crime_city": "Bitmap Beach",
+  "persons": 100000,
+  "murderer": "Rita Warner",
+  "mastermind": "Tony Logan",
+  "dirty": {
+    "event_date_text": true,
+    "checkin_time_text": true
+  },
+  "hops": [
+    {
+      "role": "witness",
+      "person_id": 272758,
+      "name": "Wayne Newton",
+      "clues": [
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "black"
+            }
+          },
+          "rendered": "has black hair"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 76,
+              "hi": 79
+            }
+          },
+          "rendered": "height around 6'4\" to 6'7\", I would say"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "is a woman"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "last_house_on_street",
+            "params": {
+              "street": "Monroe Blvd"
+            }
+          },
+          "rendered": "has the highest house number on Monroe Blvd"
+        }
+      ]
+    },
+    {
+      "role": "witness",
+      "person_id": 631311,
+      "name": "Marsha Morris",
+      "clues": [
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "black"
+            }
+          },
+          "rendered": "has black hair"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "65VS"
+            }
+          },
+          "rendered": "has a license plate containing \"65VS\""
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "Cadillac",
+              "model": "Escalade"
+            }
+          },
+          "rendered": "drives a Cadillac Escalade"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Palmer Way"
+            }
+          },
+          "rendered": "lives on Palmer Way"
+        }
+      ]
+    },
+    {
+      "role": "murderer",
+      "person_id": 352934,
+      "name": "Rita Warner",
+      "clues": [
+        {
+          "speaker": 272758,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "regular",
+              "prefix": "22U"
+            }
+          },
+          "rendered": "carried a Get Fit Now gym bag; the membership number on it started with \"22U\" and only regular members get those bags"
+        },
+        {
+          "speaker": 631311,
+          "predicate": {
+            "kind": "income_rank_on_street",
+            "params": {
+              "street": "Spruce Ter"
+            }
+          },
+          "rendered": "makes more money than anyone else living on Spruce Ter"
+        },
+        {
+          "speaker": 272758,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20170821,
+              "t_lo": 1318,
+              "t_hi": 1518
+            }
+          },
+          "rendered": "was working out at Get Fit Now on August 21, 2017, arriving sometime between 1:18pm and 3:18pm"
+        },
+        {
+          "speaker": 631311,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Ballet Nutcracker",
+              "lo": 20170701,
+              "hi": 20170731,
+              "count": 4
+            }
+          },
+          "rendered": "went to the Ballet Nutcracker exactly 4 times in July 2017"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 281372,
+      "name": "Danielle Mitchell",
+      "clues": [
+        {
+          "speaker": 352934,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "silver",
+              "prefix": "85"
+            }
+          },
+          "rendered": "carried a Get Fit Now gym bag; the membership number on it started with \"85\" and only silver members get those bags"
+        },
+        {
+          "speaker": 352934,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 75,
+              "hi": 77
+            }
+          },
+          "rendered": "was between 6'3\" and 6'5\" tall"
+        },
+        {
+          "speaker": 352934,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "XUU"
+            }
+          },
+          "rendered": "drove a car whose license plate had \"XUU\" in it"
+        },
+        {
+          "speaker": 352934,
+          "predicate": {
+            "kind": "income_rank_on_street",
+            "params": {
+              "street": "Laurel Rd"
+            }
+          },
+          "rendered": "is the highest earner on Laurel Rd"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 58593,
+      "name": "Judy Reyes",
+      "clues": [
+        {
+          "speaker": 281372,
+          "predicate": {
+            "kind": "age_range",
+            "params": {
+              "lo": 54,
+              "hi": 59
+            }
+          },
+          "rendered": "aged somewhere from 54 to 59"
+        },
+        {
+          "speaker": 281372,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20170811
+            }
+          },
+          "rendered": "was on the phone longer than anybody else that day, August 11, 2017"
+        },
+        {
+          "speaker": 281372,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "brown"
+            }
+          },
+          "rendered": "had brown hair"
+        },
+        {
+          "speaker": 281372,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "Lexus",
+              "model": "ES"
+            }
+          },
+          "rendered": "drives a Lexus ES"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 470127,
+      "name": "Noah Briggs",
+      "clues": [
+        {
+          "speaker": 58593,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "64R"
+            }
+          },
+          "rendered": "has a license plate containing \"64R\""
+        },
+        {
+          "speaker": 58593,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 58593,
+              "date": 20170902
+            }
+          },
+          "rendered": "phoned me on September 2, 2017; check my phone records"
+        },
+        {
+          "speaker": 58593,
+          "predicate": {
+            "kind": "income_rank_on_street",
+            "params": {
+              "street": "Crane Ave"
+            }
+          },
+          "rendered": "makes more money than anyone else living on Crane Ave"
+        },
+        {
+          "speaker": 58593,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Funky Grooves Tour",
+              "lo": 20170701,
+              "hi": 20170731,
+              "count": 2
+            }
+          },
+          "rendered": "went to the Funky Grooves Tour exactly 2 times in July 2017"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 561573,
+      "name": "Raymond Bishop",
+      "clues": [
+        {
+          "speaker": 470127,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 470127,
+              "date": 20170830
+            }
+          },
+          "rendered": "called me on August 30, 2017"
+        },
+        {
+          "speaker": 470127,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20170830,
+              "t_lo": 1233,
+              "t_hi": 1433
+            }
+          },
+          "rendered": "was working out at Get Fit Now on August 30, 2017, arriving sometime between 12:33pm and 2:33pm"
+        },
+        {
+          "speaker": 470127,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "The Funky Grooves Tour",
+              "lo": 20170701,
+              "hi": 20170731,
+              "count": 4
+            }
+          },
+          "rendered": "checked in at the The Funky Grooves Tour 4 times during July 2017"
+        },
+        {
+          "speaker": 470127,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "male"
+            }
+          },
+          "rendered": "is a man"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 629209,
+      "name": "Fred Hamilton",
+      "clues": [
+        {
+          "speaker": 561573,
+          "predicate": {
+            "kind": "last_house_on_street",
+            "params": {
+              "street": "Valley Dr"
+            }
+          },
+          "rendered": "has the highest house number on Valley Dr"
+        },
+        {
+          "speaker": 561573,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "blue"
+            }
+          },
+          "rendered": "has blue eyes"
+        },
+        {
+          "speaker": 561573,
+          "predicate": {
+            "kind": "transfer_from_known",
+            "params": {
+              "to": 561573,
+              "date": 20170831
+            }
+          },
+          "rendered": "wired money to my bank account on August 31, 2017"
+        },
+        {
+          "speaker": 561573,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 71,
+              "hi": 73
+            }
+          },
+          "rendered": "stood somewhere from 71 to 73 inches"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 289911,
+      "name": "Tina Cooper",
+      "clues": [
+        {
+          "speaker": 629209,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Yoga in the Park",
+              "never": "Chili Cookoff"
+            }
+          },
+          "rendered": "has been to the Yoga in the Park but has never once been to the Chili Cookoff"
+        },
+        {
+          "speaker": 629209,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "is a woman"
+        },
+        {
+          "speaker": 629209,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "regular",
+              "prefix": "33"
+            }
+          },
+          "rendered": "carried a Get Fit Now gym bag; the membership number on it started with \"33\" and only regular members get those bags"
+        },
+        {
+          "speaker": 629209,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Holly Way"
+            }
+          },
+          "rendered": "lives on Holly Way"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 884758,
+      "name": "Eric Taylor",
+      "clues": [
+        {
+          "speaker": 289911,
+          "predicate": {
+            "kind": "age_range",
+            "params": {
+              "lo": 49,
+              "hi": 55
+            }
+          },
+          "rendered": "looked between 49 and 55 years old"
+        },
+        {
+          "speaker": 289911,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20170810
+            }
+          },
+          "rendered": "was on the phone longer than anybody else that day, August 10, 2017"
+        },
+        {
+          "speaker": 289911,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Sunset Way"
+            }
+          },
+          "rendered": "has a place somewhere on Sunset Way"
+        },
+        {
+          "speaker": 289911,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "brown"
+            }
+          },
+          "rendered": "has brown eyes"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 565927,
+      "name": "Nathan Lane",
+      "clues": [
+        {
+          "speaker": 884758,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 63,
+              "hi": 65
+            }
+          },
+          "rendered": "was between 5'3\" and 5'5\" tall"
+        },
+        {
+          "speaker": 884758,
+          "predicate": {
+            "kind": "income_rank_on_street",
+            "params": {
+              "street": "Justice Ln"
+            }
+          },
+          "rendered": "makes more money than anyone else living on Justice Ln"
+        },
+        {
+          "speaker": 884758,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "SQL Symphony Concert",
+              "never": "Antique Roadshow"
+            }
+          },
+          "rendered": "has been to the SQL Symphony Concert but has never once been to the Antique Roadshow"
+        },
+        {
+          "speaker": 884758,
+          "predicate": {
+            "kind": "transfer_from_known",
+            "params": {
+              "to": 884758,
+              "date": 20170902
+            }
+          },
+          "rendered": "paid me by bank transfer on September 2, 2017"
+        }
+      ]
+    },
+    {
+      "role": "mastermind",
+      "person_id": 897123,
+      "name": "Tony Logan",
+      "clues": [
+        {
+          "speaker": 565927,
+          "predicate": {
+            "kind": "last_house_on_street",
+            "params": {
+              "street": "Taylor St"
+            }
+          },
+          "rendered": "lives in the last house on Taylor St"
+        },
+        {
+          "speaker": 565927,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "Volkswagen",
+              "model": "Golf"
+            }
+          },
+          "rendered": "drives a Volkswagen Golf"
+        },
+        {
+          "speaker": 565927,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 25000,
+              "lo": 20170812,
+              "hi": 20170906
+            }
+          },
+          "rendered": "received a bank transfer of more than $25,000 sometime between August 12, 2017 and September 6, 2017"
+        },
+        {
+          "speaker": 565927,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "amber"
+            }
+          },
+          "rendered": "had amber eyes"
+        }
+      ]
+    }
+  ]
+}

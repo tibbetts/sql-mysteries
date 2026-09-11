@@ -102,3 +102,43 @@ def test_text_is_a_third_person_verb_phrase(small_world, kind):
         t = p.text(rng, ctx)
         first = t.split()[0].lower()
         assert first not in {"i", "it", "the", "they", "he", "she"}, t
+
+
+FUZZY_KINDS = ["height_range", "age_range", "event_count", "car", "gym_checkin_window", "called_person", "received_transfer_over"]
+
+
+@pytest.mark.parametrize("kind", FUZZY_KINDS)
+def test_fuzzy_sampling_keeps_target_matching_and_changes_text(small_world, kind):
+    db, rng, tier, info = small_world
+    target, speaker, *decoys = sample_people(db, rng, 5)
+    ctx = Ctx(info=info, dirty=DirtyFlags(), known=[("murderer", speaker)], fuzzy=True)
+    p = REGISTRY[kind].sample(db, rng, target, ctx)
+    assert p.params.get("fuzzy") is True
+    p.plant(db, rng, ctx, target)
+    for d in decoys:
+        p.plant(db, rng, ctx, d)
+    matched = set(db.ids(p.sql(ctx)))
+    assert {target, *decoys} <= matched
+    text = p.text(rng, ctx)
+    assert text and text.split()[0].lower() not in {"i", "it", "the", "they"}
+    # fuzzy text must not spell out the exact SQL bounds
+    for key in ("lo", "hi", "t_lo", "t_hi", "amount", "count"):
+        if key in p.params and isinstance(p.params[key], int) and p.params[key] > 12:
+            assert str(p.params[key]) not in text, (key, text)
+
+
+def test_fuzzy_off_by_default(small_world):
+    db, rng, tier, info = small_world
+    target, speaker = sample_people(db, rng, 2)
+    ctx = make_ctx(info, known=[("murderer", speaker)])
+    for kind in FUZZY_KINDS:
+        p = REGISTRY[kind].sample(db, rng, target, ctx)
+        assert not p.params.get("fuzzy")
+
+
+def test_sample_kinds_can_exclude_exclusive(small_world):
+    db, rng, tier, info = small_world
+    ctx = make_ctx(info, known=[("murderer", 1)])
+    for _ in range(30):
+        kinds = sample_kinds(rng, ctx, 4, allow_hard=True, allow_exclusive=False)
+        assert not any(k.exclusive for k in kinds)

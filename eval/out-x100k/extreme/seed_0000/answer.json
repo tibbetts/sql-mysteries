@@ -1,0 +1,617 @@
+{
+  "tier": "extreme",
+  "seed": 0,
+  "crime_date": 20170728,
+  "crime_city": "Vacuum Valley",
+  "persons": 100000,
+  "murderer": "Rose Cummings",
+  "mastermind": "Jesse Alvarado",
+  "dirty": {
+    "event_date_text": true,
+    "checkin_time_text": true
+  },
+  "hops": [
+    {
+      "role": "witness",
+      "person_id": 855531,
+      "name": "Jonathan Hughes",
+      "clues": [
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Franklin Ter"
+            }
+          },
+          "rendered": "has a place somewhere on Franklin Ter"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 55,
+              "hi": 57
+            }
+          },
+          "rendered": "stood somewhere from 55 to 57 inches"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "white"
+            }
+          },
+          "rendered": "has white hair"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Monster Truck Rally",
+              "lo": 20170501,
+              "hi": 20170531,
+              "count": 4
+            }
+          },
+          "rendered": "checked in at the Monster Truck Rally 4 times during May 2017"
+        }
+      ]
+    },
+    {
+      "role": "witness",
+      "person_id": 870715,
+      "name": "Julie Hughes",
+      "clues": [
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "last_house_on_street",
+            "params": {
+              "street": "Adams Ave"
+            }
+          },
+          "rendered": "has the highest house number on Adams Ave"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "silver",
+              "prefix": "42G"
+            }
+          },
+          "rendered": "is a silver member at Get Fit Now with a membership id beginning \"42G\""
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "brown"
+            }
+          },
+          "rendered": "had brown eyes"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "grey"
+            }
+          },
+          "rendered": "has grey hair"
+        }
+      ]
+    },
+    {
+      "role": "murderer",
+      "person_id": 342491,
+      "name": "Rose Cummings",
+      "clues": [
+        {
+          "speaker": 855531,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 66,
+              "hi": 68
+            }
+          },
+          "rendered": "was between 5'6\" and 5'8\" tall"
+        },
+        {
+          "speaker": 870715,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 20000,
+              "lo": 20170703,
+              "hi": 20170728
+            }
+          },
+          "rendered": "received a bank transfer of more than $20,000 sometime between July 3, 2017 and July 28, 2017"
+        },
+        {
+          "speaker": 855531,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 855531,
+              "date": 20170728
+            }
+          },
+          "rendered": "called me on July 28, 2017"
+        },
+        {
+          "speaker": 870715,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "brown"
+            }
+          },
+          "rendered": "had brown eyes"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 425749,
+      "name": "Ethan Ortega",
+      "clues": [
+        {
+          "speaker": 342491,
+          "predicate": {
+            "kind": "age_range",
+            "params": {
+              "lo": 28,
+              "hi": 34
+            }
+          },
+          "rendered": "aged somewhere from 28 to 34"
+        },
+        {
+          "speaker": 342491,
+          "predicate": {
+            "kind": "transfer_from_known",
+            "params": {
+              "to": 342491,
+              "date": 20170721
+            }
+          },
+          "rendered": "wired money to my bank account on July 21, 2017"
+        },
+        {
+          "speaker": 342491,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "was a woman"
+        },
+        {
+          "speaker": 342491,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Comic Convention",
+              "lo": 20170601,
+              "hi": 20170630,
+              "count": 4
+            }
+          },
+          "rendered": "went to the Comic Convention exactly 4 times in June 2017"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 900256,
+      "name": "Grant Jennings",
+      "clues": [
+        {
+          "speaker": 425749,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20170713
+            }
+          },
+          "rendered": "was on the phone longer than anybody else that day, July 13, 2017"
+        },
+        {
+          "speaker": 425749,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Highland Pl"
+            }
+          },
+          "rendered": "lives on Highland Pl"
+        },
+        {
+          "speaker": 425749,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "grey"
+            }
+          },
+          "rendered": "had grey hair"
+        },
+        {
+          "speaker": 425749,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20170722,
+              "t_lo": 1019,
+              "t_hi": 1219
+            }
+          },
+          "rendered": "checked in at the Get Fit Now gym on July 22, 2017 sometime between 10:19am and 12:19pm"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 110661,
+      "name": "Lynn Mack",
+      "clues": [
+        {
+          "speaker": 900256,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "blonde"
+            }
+          },
+          "rendered": "has blonde hair"
+        },
+        {
+          "speaker": 900256,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20170727
+            }
+          },
+          "rendered": "made the single longest phone call of anyone on July 27, 2017"
+        },
+        {
+          "speaker": 900256,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Chamber Music Recital",
+              "never": "Film Festival"
+            }
+          },
+          "rendered": "has been to the Chamber Music Recital but has never once been to the Film Festival"
+        },
+        {
+          "speaker": 900256,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "regular",
+              "prefix": "49"
+            }
+          },
+          "rendered": "is a regular member at Get Fit Now with a membership id beginning \"49\""
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 470823,
+      "name": "Emily Moss",
+      "clues": [
+        {
+          "speaker": 110661,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "regular",
+              "prefix": "74R"
+            }
+          },
+          "rendered": "is a regular member at Get Fit Now with a membership id beginning \"74R\""
+        },
+        {
+          "speaker": 110661,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 50000,
+              "lo": 20170629,
+              "hi": 20170723
+            }
+          },
+          "rendered": "was paid over $50,000 by wire between June 29, 2017 and July 23, 2017"
+        },
+        {
+          "speaker": 110661,
+          "predicate": {
+            "kind": "last_house_on_street",
+            "params": {
+              "street": "Taylor Ter"
+            }
+          },
+          "rendered": "has the highest house number on Taylor Ter"
+        },
+        {
+          "speaker": 110661,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "was a woman"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 171391,
+      "name": "Erin Jacobs",
+      "clues": [
+        {
+          "speaker": 470823,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "66AD"
+            }
+          },
+          "rendered": "drove a car whose license plate had \"66AD\" in it"
+        },
+        {
+          "speaker": 470823,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Cheese Tasting",
+              "lo": 20170501,
+              "hi": 20170531,
+              "count": 2
+            }
+          },
+          "rendered": "went to the Cheese Tasting exactly 2 times in May 2017"
+        },
+        {
+          "speaker": 470823,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "amber"
+            }
+          },
+          "rendered": "has amber eyes"
+        },
+        {
+          "speaker": 470823,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 470823,
+              "date": 20170722
+            }
+          },
+          "rendered": "called me on July 22, 2017"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 443449,
+      "name": "Dale Nichols",
+      "clues": [
+        {
+          "speaker": 171391,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Robotics Fair",
+              "never": "Astronomy Night"
+            }
+          },
+          "rendered": "has been to the Robotics Fair but has never once been to the Astronomy Night"
+        },
+        {
+          "speaker": 171391,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "male"
+            }
+          },
+          "rendered": "is a man"
+        },
+        {
+          "speaker": 171391,
+          "predicate": {
+            "kind": "transfer_from_known",
+            "params": {
+              "to": 171391,
+              "date": 20170728
+            }
+          },
+          "rendered": "wired money to my bank account on July 28, 2017"
+        },
+        {
+          "speaker": 171391,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20170708
+            }
+          },
+          "rendered": "made the single longest phone call of anyone on July 8, 2017"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 408704,
+      "name": "Gary Dixon",
+      "clues": [
+        {
+          "speaker": 443449,
+          "predicate": {
+            "kind": "last_house_on_street",
+            "params": {
+              "street": "Birch Ave"
+            }
+          },
+          "rendered": "has the highest house number on Birch Ave"
+        },
+        {
+          "speaker": 443449,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "SQL Symphony Concert",
+              "never": "Opera Gala"
+            }
+          },
+          "rendered": "always goes to the SQL Symphony Concert and refuses to go to the Opera Gala"
+        },
+        {
+          "speaker": 443449,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 20000,
+              "lo": 20170707,
+              "hi": 20170723
+            }
+          },
+          "rendered": "was paid over $20,000 by wire between July 7, 2017 and July 23, 2017"
+        },
+        {
+          "speaker": 443449,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "SXU"
+            }
+          },
+          "rendered": "drove a car whose license plate had \"SXU\" in it"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 208230,
+      "name": "June Norris",
+      "clues": [
+        {
+          "speaker": 408704,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "male"
+            }
+          },
+          "rendered": "was a man"
+        },
+        {
+          "speaker": 408704,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "The Funky Grooves Tour",
+              "lo": 20170601,
+              "hi": 20170630,
+              "count": 4
+            }
+          },
+          "rendered": "checked in at the The Funky Grooves Tour 4 times during June 2017"
+        },
+        {
+          "speaker": 408704,
+          "predicate": {
+            "kind": "transfer_from_known",
+            "params": {
+              "to": 408704,
+              "date": 20170725
+            }
+          },
+          "rendered": "wired money to my bank account on July 25, 2017"
+        },
+        {
+          "speaker": 408704,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Crane Way"
+            }
+          },
+          "rendered": "has a place somewhere on Crane Way"
+        }
+      ]
+    },
+    {
+      "role": "mastermind",
+      "person_id": 281693,
+      "name": "Jesse Alvarado",
+      "clues": [
+        {
+          "speaker": 208230,
+          "predicate": {
+            "kind": "age_range",
+            "params": {
+              "lo": 81,
+              "hi": 86
+            }
+          },
+          "rendered": "aged somewhere from 81 to 86"
+        },
+        {
+          "speaker": 208230,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20170713,
+              "t_lo": 1716,
+              "t_hi": 1916
+            }
+          },
+          "rendered": "checked in at the Get Fit Now gym on July 13, 2017 sometime between 5:16pm and 7:16pm"
+        },
+        {
+          "speaker": 208230,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Ridge Rd"
+            }
+          },
+          "rendered": "lives on Ridge Rd"
+        },
+        {
+          "speaker": 208230,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Antique Roadshow",
+              "never": "Monster Truck Rally"
+            }
+          },
+          "rendered": "always goes to the Antique Roadshow and refuses to go to the Monster Truck Rally"
+        }
+      ]
+    }
+  ]
+}

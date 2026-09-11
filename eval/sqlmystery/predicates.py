@@ -35,6 +35,7 @@ class Ctx:
     dirty: DirtyFlags
     known: list[tuple[str, int]] = field(default_factory=list)  # (role, person_id); last is the speaker
     reserved: set[str] = field(default_factory=set)
+    fuzzy: bool = False
 
     @property
     def speaker(self) -> int:
@@ -115,6 +116,19 @@ def _event_date_expr(ctx: Ctx) -> str:
 
 def _checkin_time_expr(ctx: Ctx, col: str) -> str:
     return f"CAST(replace({col},':','') AS INTEGER)" if ctx.dirty.checkin_time_text else col
+
+
+CAR_COUNTRY = {
+    "BMW": "German", "Mercedes-Benz": "German", "Audi": "German", "Volkswagen": "German", "Porsche": "German",
+    "Toyota": "Japanese", "Honda": "Japanese", "Nissan": "Japanese", "Subaru": "Japanese", "Mazda": "Japanese",
+    "Lexus": "Japanese", "Acura": "Japanese", "Infiniti": "Japanese",
+    "Ford": "American", "Chevrolet": "American", "Jeep": "American", "Dodge": "American", "GMC": "American",
+    "Buick": "American", "Cadillac": "American", "Tesla": "American",
+    "Hyundai": "Korean", "Kia": "Korean", "Volvo": "Swedish", "Mini": "British",
+}
+PERIODS = {"morning": (600, 1159), "afternoon": (1200, 1759), "evening": (1800, 2159)}
+EVENT_COUNT_WORDS = {"a few": (2, 4, 3), "several": (3, 5, 4), "many": (5, 8, 6)}
+CALL_OFFSET_WORDS = {"the day before, or maybe the day of the murder": (0, 1), "a couple of days before the murder": (1, 3), "about a week before the murder": (5, 9)}
 
 
 def _q(s: str) -> str:
@@ -244,24 +258,48 @@ class Car(Predicate):
     @classmethod
     def sample(cls, db, rng, target_id, ctx):
         row = _ensure_license(db, rng, ctx.info, target_id)
+        if ctx.fuzzy:
+            mode = rng.choice(["make", "country"])
+            return cls({"fuzzy": True, "mode": mode, "make": row[7], "model": row[8], "country": CAR_COUNTRY[row[7]]})
         return cls({"make": row[7], "model": row[8]})
+
+    def _matching(self, ctx) -> list[tuple[str, str]]:
+        mode = self.params.get("mode")
+        if mode == "country":
+            return [m for m in ctx.info.car_models if CAR_COUNTRY[m[0]] == self.params["country"]]
+        if mode == "make":
+            return [m for m in ctx.info.car_models if m[0] == self.params["make"]]
+        return [(self.params["make"], self.params["model"])]
 
     def plant(self, db, rng, ctx, pid):
         _ensure_license(db, rng, ctx.info, pid)
+        make, model = rng.choice(self._matching(ctx))
         db.execute("UPDATE drivers_license SET car_make=?, car_model=? WHERE id=(SELECT license_id FROM person WHERE id=?)",
-                   (self.params["make"], self.params["model"], pid))
+                   (make, model, pid))
 
     def unplant(self, db, rng, ctx, pid):
-        others = [m for m in ctx.info.car_models if m != (self.params["make"], self.params["model"])]
-        make, model = rng.choice(others)
+        matching = set(self._matching(ctx))
+        make, model = rng.choice([m for m in ctx.info.car_models if m not in matching])
         db.execute("UPDATE drivers_license SET car_make=?, car_model=? WHERE id=(SELECT license_id FROM person WHERE id=?)",
                    (make, model, pid))
 
     def sql(self, ctx):
-        return (f"SELECT p.id FROM person p JOIN drivers_license d ON p.license_id=d.id "
-                f"WHERE d.car_make={_q(self.params['make'])} AND d.car_model={_q(self.params['model'])}")
+        mode = self.params.get("mode")
+        if mode == "country":
+            makes = sorted({m for m, c in CAR_COUNTRY.items() if c == self.params["country"]})
+            where = "d.car_make IN (" + ",".join(_q(m) for m in makes) + ")"
+        elif mode == "make":
+            where = f"d.car_make={_q(self.params['make'])}"
+        else:
+            where = f"d.car_make={_q(self.params['make'])} AND d.car_model={_q(self.params['model'])}"
+        return f"SELECT p.id FROM person p JOIN drivers_license d ON p.license_id=d.id WHERE {where}"
 
     def text(self, rng, ctx):
+        mode = self.params.get("mode")
+        if mode == "country":
+            return rng.choice([f"drives something {self.params['country']}", f"got into a {self.params['country']} car, I could not tell which"])
+        if mode == "make":
+            return rng.choice([f"drives a {self.params['make']}, I did not catch the model", f"got into some kind of {self.params['make']}"])
         c = f"{self.params['make']} {self.params['model']}"
         return rng.choice([f"drives a {c}", f"got into a {c}"])
 
@@ -275,14 +313,19 @@ class HeightRange(Predicate):
     def sample(cls, db, rng, target_id, ctx):
         row = _ensure_license(db, rng, ctx.info, target_id)
         h = row[2]
+        if ctx.fuzzy:
+            return cls({"fuzzy": True, "center": h, "lo": h - 2, "hi": h + 2})
         lo = h - rng.randint(0, 2)
         hi = lo + rng.randint(2, 3)
         return cls({"lo": lo, "hi": hi})
 
     def plant(self, db, rng, ctx, pid):
         _ensure_license(db, rng, ctx.info, pid)
+        lo, hi = self.params["lo"], self.params["hi"]
+        if self.params.get("fuzzy"):
+            lo, hi = self.params["center"] - 1, self.params["center"] + 1
         db.execute("UPDATE drivers_license SET height=? WHERE id=(SELECT license_id FROM person WHERE id=?)",
-                   (rng.randint(self.params["lo"], self.params["hi"]), pid))
+                   (rng.randint(lo, hi), pid))
 
     def unplant(self, db, rng, ctx, pid):
         h = self.params["lo"] - rng.randint(2, 6) if rng.random() < 0.5 else self.params["hi"] + rng.randint(2, 6)
@@ -294,6 +337,9 @@ class HeightRange(Predicate):
 
     def text(self, rng, ctx):
         lo, hi = self.params["lo"], self.params["hi"]
+        if self.params.get("fuzzy"):
+            c = _feet(self.params["center"])
+            return rng.choice([f"was about {c} tall, give or take a couple of inches", f"looked roughly {c}, hard to say exactly"])
         return rng.choice([
             f"was between {_feet(lo)} and {_feet(hi)} tall",
             f"stood somewhere from {lo} to {hi} inches",
@@ -310,14 +356,19 @@ class AgeRange(Predicate):
     def sample(cls, db, rng, target_id, ctx):
         row = _ensure_license(db, rng, ctx.info, target_id)
         a = row[1]
+        if ctx.fuzzy:
+            return cls({"fuzzy": True, "center": a, "lo": a - 3, "hi": a + 3})
         lo = a - rng.randint(0, 4)
         hi = lo + rng.randint(4, 6)
         return cls({"lo": lo, "hi": hi})
 
     def plant(self, db, rng, ctx, pid):
         _ensure_license(db, rng, ctx.info, pid)
+        lo, hi = self.params["lo"], self.params["hi"]
+        if self.params.get("fuzzy"):
+            lo, hi = self.params["center"] - 1, self.params["center"] + 1
         db.execute("UPDATE drivers_license SET age=? WHERE id=(SELECT license_id FROM person WHERE id=?)",
-                   (rng.randint(self.params["lo"], self.params["hi"]), pid))
+                   (rng.randint(lo, hi), pid))
 
     def unplant(self, db, rng, ctx, pid):
         a = self.params["lo"] - rng.randint(2, 10) if self.params["lo"] > 20 else self.params["hi"] + rng.randint(2, 10)
@@ -329,6 +380,9 @@ class AgeRange(Predicate):
 
     def text(self, rng, ctx):
         lo, hi = self.params["lo"], self.params["hi"]
+        if self.params.get("fuzzy"):
+            c = self.params["center"]
+            return rng.choice([f"looked around {c}, could be a few years either way", f"seemed to be roughly {c} years old"])
         return rng.choice([f"looked between {lo} and {hi} years old", f"aged somewhere from {lo} to {hi}"])
 
 
@@ -509,12 +563,19 @@ class GymCheckinWindow(Predicate):
     @classmethod
     def sample(cls, db, rng, target_id, ctx):
         date = add_days(ctx.info.crime_date, -rng.randint(1, 20))
+        if ctx.fuzzy:
+            period = rng.choice(list(PERIODS))
+            lo, hi = PERIODS[period]
+            return cls({"fuzzy": True, "period": period, "date": date, "t_lo": lo, "t_hi": hi})
         lo = rand_time(rng, 700, 1900)
         return cls({"date": date, "t_lo": lo, "t_hi": add_minutes(lo, 120)})
 
     def plant(self, db, rng, ctx, pid):
         gid, _ = _ensure_member(db, rng, ctx.info, pid)
-        t = add_minutes(self.params["t_lo"], rng.randint(0, 100))
+        if self.params.get("fuzzy"):
+            t = add_minutes(self.params["t_lo"], rng.randint(60, 240))   # well inside the period
+        else:
+            t = add_minutes(self.params["t_lo"], rng.randint(0, 100))
         db.execute("INSERT INTO get_fit_now_check_in VALUES (?,?,?,?)",
                    (gid, self.params["date"], t, add_minutes(t, rng.randint(30, 120))))
 
@@ -529,6 +590,9 @@ class GymCheckinWindow(Predicate):
 
     def text(self, rng, ctx):
         d, lo, hi = human(self.params["date"]), human_time(self.params["t_lo"]), human_time(self.params["t_hi"])
+        if self.params.get("fuzzy"):
+            return rng.choice([f"was at the Get Fit Now gym on {d}, sometime in the {self.params['period']}",
+                               f"checked in at Get Fit Now in the {self.params['period']} on {d}"])
         return rng.choice([
             f"checked in at the Get Fit Now gym on {d} sometime between {lo} and {hi}",
             f"was working out at Get Fit Now on {d}, arriving sometime between {lo} and {hi}",
@@ -546,6 +610,11 @@ class EventCount(Predicate):
     def sample(cls, db, rng, target_id, ctx):
         month = add_days(ctx.info.crime_date, -rng.randint(15, 120))
         lo, hi = month_bounds(month)
+        if ctx.fuzzy:
+            word = rng.choice(list(EVENT_COUNT_WORDS))
+            c_lo, c_hi, c = EVENT_COUNT_WORDS[word]
+            return cls({"fuzzy": True, "word": word, "event": rng.choice(ctx.info.event_names), "lo": lo, "hi": hi,
+                        "count": c, "count_lo": c_lo, "count_hi": c_hi})
         return cls({"event": rng.choice(ctx.info.event_names), "lo": lo, "hi": hi, "count": rng.randint(2, 4)})
 
     def _delete(self, db, pid):
@@ -565,10 +634,14 @@ class EventCount(Predicate):
     def sql(self, ctx):
         d = _event_date_expr(ctx)
         return (f"SELECT person_id FROM facebook_event_checkin WHERE event_name={_q(self.params['event'])} "
-                f"AND {d} BETWEEN {self.params['lo']} AND {self.params['hi']} GROUP BY person_id HAVING COUNT(*)={self.params['count']}")
+                f"AND {d} BETWEEN {self.params['lo']} AND {self.params['hi']} GROUP BY person_id HAVING COUNT(*) BETWEEN "
+                f"{self.params.get('count_lo', self.params['count'])} AND {self.params.get('count_hi', self.params['count'])}")
 
     def text(self, rng, ctx):
         e, n, m = self.params["event"], self.params["count"], month_name(self.params["lo"])
+        if self.params.get("fuzzy"):
+            w = self.params["word"]
+            return rng.choice([f"went to the {e} {w} times in {m}", f"kept showing up at the {e} in {m}, {w} times at least"])
         return rng.choice([f"went to the {e} exactly {n} times in {m}", f"checked in at the {e} {n} times during {m}"])
 
 
@@ -617,20 +690,31 @@ class CalledPerson(Predicate):
 
     @classmethod
     def sample(cls, db, rng, target_id, ctx):
-        return cls({"callee": ctx.speaker, "date": add_days(ctx.info.crime_date, -rng.randint(0, 10))})
+        if ctx.fuzzy:
+            word = rng.choice(list(CALL_OFFSET_WORDS))
+            o_lo, o_hi = CALL_OFFSET_WORDS[word]
+            return cls({"fuzzy": True, "word": word, "callee": ctx.speaker,
+                        "date_lo": add_days(ctx.info.crime_date, -o_hi), "date_hi": add_days(ctx.info.crime_date, -o_lo)})
+        d = add_days(ctx.info.crime_date, -rng.randint(0, 10))
+        return cls({"callee": ctx.speaker, "date_lo": d, "date_hi": d})
 
     def plant(self, db, rng, ctx, pid):
         db.execute("INSERT INTO phone_call VALUES (?,?,?,?,?)",
-                   (pid, self.params["callee"], self.params["date"], rand_time(rng, 700, 2300), rng.randint(30, 1800)))
+                   (pid, self.params["callee"], rand_date(rng, self.params["date_lo"], self.params["date_hi"]),
+                    rand_time(rng, 700, 2300), rng.randint(30, 1800)))
 
     def unplant(self, db, rng, ctx, pid):
-        db.execute("DELETE FROM phone_call WHERE caller_id=? AND callee_id=? AND date=?", (pid, self.params["callee"], self.params["date"]))
+        db.execute("DELETE FROM phone_call WHERE caller_id=? AND callee_id=? AND date BETWEEN ? AND ?",
+                   (pid, self.params["callee"], self.params["date_lo"], self.params["date_hi"]))
 
     def sql(self, ctx):
-        return f"SELECT DISTINCT caller_id FROM phone_call WHERE callee_id={self.params['callee']} AND date={self.params['date']}"
+        return (f"SELECT DISTINCT caller_id FROM phone_call WHERE callee_id={self.params['callee']} "
+                f"AND date BETWEEN {self.params['date_lo']} AND {self.params['date_hi']}")
 
     def text(self, rng, ctx):
-        d = human(self.params["date"])
+        if self.params.get("fuzzy"):
+            return rng.choice([f"called me {self.params['word']}", f"phoned me {self.params['word']}; check my phone records"])
+        d = human(self.params["date_lo"])
         return rng.choice([f"called me on {d}", f"phoned me on {d}; check my phone records"])
 
 
@@ -681,6 +765,8 @@ class ReceivedTransferOver(Predicate):
     @classmethod
     def sample(cls, db, rng, target_id, ctx):
         hi = add_days(ctx.info.crime_date, -rng.randint(0, 5))
+        if ctx.fuzzy:
+            return cls({"fuzzy": True, "amount": 9999, "lo": add_days(ctx.info.crime_date, -30), "hi": ctx.info.crime_date})
         return cls({"amount": rng.choice([10000, 20000, 25000, 50000]), "lo": add_days(hi, -rng.randint(7, 30)), "hi": hi})
 
     def plant(self, db, rng, ctx, pid):
@@ -699,6 +785,9 @@ class ReceivedTransferOver(Predicate):
 
     def text(self, rng, ctx):
         a, lo, hi = self.params["amount"], human(self.params["lo"]), human(self.params["hi"])
+        if self.params.get("fuzzy"):
+            return rng.choice(["was paid a five-figure sum by bank transfer in the month leading up to the murder",
+                               "received a big wire, at least five figures, sometime in the month before the murder"])
         return rng.choice([f"received a bank transfer of more than ${a:,} sometime between {lo} and {hi}",
                            f"was paid over ${a:,} by wire between {lo} and {hi}"])
 
@@ -734,8 +823,10 @@ class TransferFromKnown(Predicate):
 
 # ---------- sampling ----------
 
-def sample_kinds(rng: random.Random, ctx: Ctx, n: int, allow_hard: bool) -> list[type[Predicate]]:
+def sample_kinds(rng: random.Random, ctx: Ctx, n: int, allow_hard: bool, allow_exclusive: bool = True) -> list[type[Predicate]]:
     pool = [c for c in REGISTRY.values() if allow_hard or not c.hard]
+    if not allow_exclusive:
+        pool = [c for c in pool if not c.exclusive]
     if not ctx.known:
         pool = [c for c in pool if not c.needs_known]
     for _ in range(1000):

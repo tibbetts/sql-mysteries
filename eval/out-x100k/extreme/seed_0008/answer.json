@@ -1,0 +1,620 @@
+{
+  "tier": "extreme",
+  "seed": 8,
+  "crime_date": 20170517,
+  "crime_city": "Bitmap Beach",
+  "persons": 100000,
+  "murderer": "Pauline Reeves",
+  "mastermind": "Nicholas White",
+  "dirty": {
+    "event_date_text": true,
+    "checkin_time_text": true
+  },
+  "hops": [
+    {
+      "role": "witness",
+      "person_id": 866127,
+      "name": "Eva Holloway",
+      "clues": [
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "male"
+            }
+          },
+          "rendered": "was a man"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "black"
+            }
+          },
+          "rendered": "had black hair"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "regular",
+              "prefix": "55"
+            }
+          },
+          "rendered": "is a regular member at Get Fit Now with a membership id beginning \"55\""
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "last_house_on_street",
+            "params": {
+              "street": "Spring Rd"
+            }
+          },
+          "rendered": "has the highest house number on Spring Rd"
+        }
+      ]
+    },
+    {
+      "role": "witness",
+      "person_id": 273053,
+      "name": "Daniel Olsen",
+      "clues": [
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "male"
+            }
+          },
+          "rendered": "was a man"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "brown"
+            }
+          },
+          "rendered": "had brown hair"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "regular",
+              "prefix": "25D"
+            }
+          },
+          "rendered": "is a regular member at Get Fit Now with a membership id beginning \"25D\""
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "1QG"
+            }
+          },
+          "rendered": "drove a car whose license plate had \"1QG\" in it"
+        }
+      ]
+    },
+    {
+      "role": "murderer",
+      "person_id": 450450,
+      "name": "Pauline Reeves",
+      "clues": [
+        {
+          "speaker": 866127,
+          "predicate": {
+            "kind": "age_range",
+            "params": {
+              "lo": 65,
+              "hi": 70
+            }
+          },
+          "rendered": "looked between 65 and 70 years old"
+        },
+        {
+          "speaker": 273053,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 70,
+              "hi": 72
+            }
+          },
+          "rendered": "stood somewhere from 70 to 72 inches"
+        },
+        {
+          "speaker": 866127,
+          "predicate": {
+            "kind": "last_house_on_street",
+            "params": {
+              "street": "Miller Ave"
+            }
+          },
+          "rendered": "has the highest house number on Miller Ave"
+        },
+        {
+          "speaker": 273053,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 50000,
+              "lo": 20170423,
+              "hi": 20170513
+            }
+          },
+          "rendered": "was paid over $50,000 by wire between April 23, 2017 and May 13, 2017"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 314323,
+      "name": "Constance Roy",
+      "clues": [
+        {
+          "speaker": 450450,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 75,
+              "hi": 78
+            }
+          },
+          "rendered": "stood somewhere from 75 to 78 inches"
+        },
+        {
+          "speaker": 450450,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Jazz Under the Stars",
+              "never": "Farmers Market"
+            }
+          },
+          "rendered": "has been to the Jazz Under the Stars but has never once been to the Farmers Market"
+        },
+        {
+          "speaker": 450450,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 450450,
+              "date": 20170510
+            }
+          },
+          "rendered": "phoned me on May 10, 2017; check my phone records"
+        },
+        {
+          "speaker": 450450,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20170512,
+              "t_lo": 1727,
+              "t_hi": 1927
+            }
+          },
+          "rendered": "checked in at the Get Fit Now gym on May 12, 2017 sometime between 5:27pm and 7:27pm"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 20933,
+      "name": "Kathy Sharp",
+      "clues": [
+        {
+          "speaker": 314323,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "silver",
+              "prefix": "25"
+            }
+          },
+          "rendered": "carried a Get Fit Now gym bag; the membership number on it started with \"25\" and only silver members get those bags"
+        },
+        {
+          "speaker": 314323,
+          "predicate": {
+            "kind": "last_house_on_street",
+            "params": {
+              "street": "Wright Ct"
+            }
+          },
+          "rendered": "has the highest house number on Wright Ct"
+        },
+        {
+          "speaker": 314323,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "was a woman"
+        },
+        {
+          "speaker": 314323,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Film Festival",
+              "never": "Antique Roadshow"
+            }
+          },
+          "rendered": "has been to the Film Festival but has never once been to the Antique Roadshow"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 164193,
+      "name": "Adam Mcbride",
+      "clues": [
+        {
+          "speaker": 20933,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "Toyota",
+              "model": "Camry"
+            }
+          },
+          "rendered": "drives a Toyota Camry"
+        },
+        {
+          "speaker": 20933,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20170510
+            }
+          },
+          "rendered": "made the single longest phone call of anyone on May 10, 2017"
+        },
+        {
+          "speaker": 20933,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20170510,
+              "t_lo": 1344,
+              "t_hi": 1544
+            }
+          },
+          "rendered": "was working out at Get Fit Now on May 10, 2017, arriving sometime between 1:44pm and 3:44pm"
+        },
+        {
+          "speaker": 20933,
+          "predicate": {
+            "kind": "age_range",
+            "params": {
+              "lo": 58,
+              "hi": 63
+            }
+          },
+          "rendered": "looked between 58 and 63 years old"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 121222,
+      "name": "Ashley Rivera",
+      "clues": [
+        {
+          "speaker": 164193,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 164193,
+              "date": 20170509
+            }
+          },
+          "rendered": "called me on May 9, 2017"
+        },
+        {
+          "speaker": 164193,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "silver",
+              "prefix": "61"
+            }
+          },
+          "rendered": "is a silver member at Get Fit Now with a membership id beginning \"61\""
+        },
+        {
+          "speaker": 164193,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Vintage Car Show",
+              "never": "The Funky Grooves Tour"
+            }
+          },
+          "rendered": "always goes to the Vintage Car Show and refuses to go to the The Funky Grooves Tour"
+        },
+        {
+          "speaker": 164193,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "Tesla",
+              "model": "Model 3"
+            }
+          },
+          "rendered": "got into a Tesla Model 3"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 379138,
+      "name": "Cindy Sandoval",
+      "clues": [
+        {
+          "speaker": 121222,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "silver",
+              "prefix": "97"
+            }
+          },
+          "rendered": "is a silver member at Get Fit Now with a membership id beginning \"97\""
+        },
+        {
+          "speaker": 121222,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20170507,
+              "t_lo": 1939,
+              "t_hi": 2139
+            }
+          },
+          "rendered": "was working out at Get Fit Now on May 7, 2017, arriving sometime between 7:39pm and 9:39pm"
+        },
+        {
+          "speaker": 121222,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Comic Convention",
+              "never": "Salsa Night"
+            }
+          },
+          "rendered": "has been to the Comic Convention but has never once been to the Salsa Night"
+        },
+        {
+          "speaker": 121222,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20170422
+            }
+          },
+          "rendered": "made the single longest phone call of anyone on April 22, 2017"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 296251,
+      "name": "Christine Mack",
+      "clues": [
+        {
+          "speaker": 379138,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "BEJ"
+            }
+          },
+          "rendered": "drove a car whose license plate had \"BEJ\" in it"
+        },
+        {
+          "speaker": 379138,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Vintage Car Show",
+              "never": "Chili Cookoff"
+            }
+          },
+          "rendered": "has been to the Vintage Car Show but has never once been to the Chili Cookoff"
+        },
+        {
+          "speaker": 379138,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 68,
+              "hi": 71
+            }
+          },
+          "rendered": "stood somewhere from 68 to 71 inches"
+        },
+        {
+          "speaker": 379138,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20170427,
+              "t_lo": 854,
+              "t_hi": 1054
+            }
+          },
+          "rendered": "checked in at the Get Fit Now gym on April 27, 2017 sometime between 8:54am and 10:54am"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 616152,
+      "name": "Jessica French",
+      "clues": [
+        {
+          "speaker": 296251,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "was a woman"
+        },
+        {
+          "speaker": 296251,
+          "predicate": {
+            "kind": "transfer_from_known",
+            "params": {
+              "to": 296251,
+              "date": 20170510
+            }
+          },
+          "rendered": "paid me by bank transfer on May 10, 2017"
+        },
+        {
+          "speaker": 296251,
+          "predicate": {
+            "kind": "last_house_on_street",
+            "params": {
+              "street": "Justice Blvd"
+            }
+          },
+          "rendered": "has the highest house number on Justice Blvd"
+        },
+        {
+          "speaker": 296251,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20170418
+            }
+          },
+          "rendered": "made the single longest phone call of anyone on April 18, 2017"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 613170,
+      "name": "Elizabeth Hines",
+      "clues": [
+        {
+          "speaker": 616152,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Chili Cookoff",
+              "lo": 20170301,
+              "hi": 20170331,
+              "count": 3
+            }
+          },
+          "rendered": "checked in at the Chili Cookoff 3 times during March 2017"
+        },
+        {
+          "speaker": 616152,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 50000,
+              "lo": 20170428,
+              "hi": 20170514
+            }
+          },
+          "rendered": "was paid over $50,000 by wire between April 28, 2017 and May 14, 2017"
+        },
+        {
+          "speaker": 616152,
+          "predicate": {
+            "kind": "income_rank_on_street",
+            "params": {
+              "street": "Coral Blvd"
+            }
+          },
+          "rendered": "makes more money than anyone else living on Coral Blvd"
+        },
+        {
+          "speaker": 616152,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "silver",
+              "prefix": "27U"
+            }
+          },
+          "rendered": "is a silver member at Get Fit Now with a membership id beginning \"27U\""
+        }
+      ]
+    },
+    {
+      "role": "mastermind",
+      "person_id": 327396,
+      "name": "Nicholas White",
+      "clues": [
+        {
+          "speaker": 613170,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "regular",
+              "prefix": "72"
+            }
+          },
+          "rendered": "carried a Get Fit Now gym bag; the membership number on it started with \"72\" and only regular members get those bags"
+        },
+        {
+          "speaker": 613170,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20170430,
+              "t_lo": 909,
+              "t_hi": 1109
+            }
+          },
+          "rendered": "checked in at the Get Fit Now gym on April 30, 2017 sometime between 9:09am and 11:09am"
+        },
+        {
+          "speaker": 613170,
+          "predicate": {
+            "kind": "age_range",
+            "params": {
+              "lo": 33,
+              "hi": 38
+            }
+          },
+          "rendered": "looked between 33 and 38 years old"
+        },
+        {
+          "speaker": 613170,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Marathon Expo",
+              "never": "Antique Roadshow"
+            }
+          },
+          "rendered": "has been to the Marathon Expo but has never once been to the Antique Roadshow"
+        }
+      ]
+    }
+  ]
+}

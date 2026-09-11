@@ -1,0 +1,617 @@
+{
+  "tier": "extreme",
+  "seed": 4,
+  "crime_date": 20180910,
+  "crime_city": "Group Grove",
+  "persons": 100000,
+  "murderer": "Judith Martin",
+  "mastermind": "Nina Sharp",
+  "dirty": {
+    "event_date_text": true,
+    "checkin_time_text": true
+  },
+  "hops": [
+    {
+      "role": "witness",
+      "person_id": 395865,
+      "name": "Samantha Cohen",
+      "clues": [
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "male"
+            }
+          },
+          "rendered": "is a man"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "YDT"
+            }
+          },
+          "rendered": "drove a car whose license plate had \"YDT\" in it"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Wine and Paint",
+              "lo": 20180601,
+              "hi": 20180630,
+              "count": 3
+            }
+          },
+          "rendered": "went to the Wine and Paint exactly 3 times in June 2018"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "black"
+            }
+          },
+          "rendered": "had black eyes"
+        }
+      ]
+    },
+    {
+      "role": "witness",
+      "person_id": 575612,
+      "name": "Erica Phelps",
+      "clues": [
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "Chevrolet",
+              "model": "Silverado"
+            }
+          },
+          "rendered": "drives a Chevrolet Silverado"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "is a woman"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "CGXW"
+            }
+          },
+          "rendered": "has a license plate containing \"CGXW\""
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "red"
+            }
+          },
+          "rendered": "had red hair"
+        }
+      ]
+    },
+    {
+      "role": "murderer",
+      "person_id": 802133,
+      "name": "Judith Martin",
+      "clues": [
+        {
+          "speaker": 395865,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20180813
+            }
+          },
+          "rendered": "was on the phone longer than anybody else that day, August 13, 2018"
+        },
+        {
+          "speaker": 575612,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20180829,
+              "t_lo": 958,
+              "t_hi": 1158
+            }
+          },
+          "rendered": "was working out at Get Fit Now on August 29, 2018, arriving sometime between 9:58am and 11:58am"
+        },
+        {
+          "speaker": 395865,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 75,
+              "hi": 77
+            }
+          },
+          "rendered": "height around 6'3\" to 6'5\", I would say"
+        },
+        {
+          "speaker": 575612,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "BMW",
+              "model": "3 Series"
+            }
+          },
+          "rendered": "drives a BMW 3 Series"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 670921,
+      "name": "Jerry Farmer",
+      "clues": [
+        {
+          "speaker": 802133,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20180903,
+              "t_lo": 1251,
+              "t_hi": 1451
+            }
+          },
+          "rendered": "was working out at Get Fit Now on September 3, 2018, arriving sometime between 12:51pm and 2:51pm"
+        },
+        {
+          "speaker": 802133,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 20000,
+              "lo": 20180821,
+              "hi": 20180905
+            }
+          },
+          "rendered": "was paid over $20,000 by wire between August 21, 2018 and September 5, 2018"
+        },
+        {
+          "speaker": 802133,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Monster Truck Rally",
+              "lo": 20180701,
+              "hi": 20180731,
+              "count": 4
+            }
+          },
+          "rendered": "went to the Monster Truck Rally exactly 4 times in July 2018"
+        },
+        {
+          "speaker": 802133,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Hickory Ave"
+            }
+          },
+          "rendered": "lives on Hickory Ave"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 381816,
+      "name": "Sue Mendoza",
+      "clues": [
+        {
+          "speaker": 670921,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20180831
+            }
+          },
+          "rendered": "made the single longest phone call of anyone on August 31, 2018"
+        },
+        {
+          "speaker": 670921,
+          "predicate": {
+            "kind": "age_range",
+            "params": {
+              "lo": 65,
+              "hi": 69
+            }
+          },
+          "rendered": "aged somewhere from 65 to 69"
+        },
+        {
+          "speaker": 670921,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 10000,
+              "lo": 20180818,
+              "hi": 20180906
+            }
+          },
+          "rendered": "received a bank transfer of more than $10,000 sometime between August 18, 2018 and September 6, 2018"
+        },
+        {
+          "speaker": 670921,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "Audi",
+              "model": "Q5"
+            }
+          },
+          "rendered": "drives a Audi Q5"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 228726,
+      "name": "Jennifer Ramsey",
+      "clues": [
+        {
+          "speaker": 381816,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "is a woman"
+        },
+        {
+          "speaker": 381816,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 381816,
+              "date": 20180903
+            }
+          },
+          "rendered": "phoned me on September 3, 2018; check my phone records"
+        },
+        {
+          "speaker": 381816,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "silver",
+              "prefix": "88"
+            }
+          },
+          "rendered": "is a silver member at Get Fit Now with a membership id beginning \"88\""
+        },
+        {
+          "speaker": 381816,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Birch Ln"
+            }
+          },
+          "rendered": "lives on Birch Ln"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 790340,
+      "name": "Carmen Tyler",
+      "clues": [
+        {
+          "speaker": 228726,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 50000,
+              "lo": 20180817,
+              "hi": 20180906
+            }
+          },
+          "rendered": "was paid over $50,000 by wire between August 17, 2018 and September 6, 2018"
+        },
+        {
+          "speaker": 228726,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "Cadillac",
+              "model": "Escalade"
+            }
+          },
+          "rendered": "drives a Cadillac Escalade"
+        },
+        {
+          "speaker": 228726,
+          "predicate": {
+            "kind": "income_rank_on_street",
+            "params": {
+              "street": "Forest Ln"
+            }
+          },
+          "rendered": "is the highest earner on Forest Ln"
+        },
+        {
+          "speaker": 228726,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 228726,
+              "date": 20180907
+            }
+          },
+          "rendered": "called me on September 7, 2018"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 194501,
+      "name": "Nathan Perkins",
+      "clues": [
+        {
+          "speaker": 790340,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "XSN"
+            }
+          },
+          "rendered": "has a license plate containing \"XSN\""
+        },
+        {
+          "speaker": 790340,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Franklin Ave"
+            }
+          },
+          "rendered": "lives on Franklin Ave"
+        },
+        {
+          "speaker": 790340,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "grey"
+            }
+          },
+          "rendered": "had grey eyes"
+        },
+        {
+          "speaker": 790340,
+          "predicate": {
+            "kind": "transfer_from_known",
+            "params": {
+              "to": 790340,
+              "date": 20180908
+            }
+          },
+          "rendered": "wired money to my bank account on September 8, 2018"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 345945,
+      "name": "Jerry Spencer",
+      "clues": [
+        {
+          "speaker": 194501,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Jazz Under the Stars",
+              "never": "Comic Convention"
+            }
+          },
+          "rendered": "always goes to the Jazz Under the Stars and refuses to go to the Comic Convention"
+        },
+        {
+          "speaker": 194501,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "Chevrolet",
+              "model": "Malibu"
+            }
+          },
+          "rendered": "drives a Chevrolet Malibu"
+        },
+        {
+          "speaker": 194501,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "is a woman"
+        },
+        {
+          "speaker": 194501,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 50000,
+              "lo": 20180814,
+              "hi": 20180905
+            }
+          },
+          "rendered": "received a bank transfer of more than $50,000 sometime between August 14, 2018 and September 5, 2018"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 50646,
+      "name": "Jane Ramos",
+      "clues": [
+        {
+          "speaker": 345945,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 345945,
+              "date": 20180903
+            }
+          },
+          "rendered": "called me on September 3, 2018"
+        },
+        {
+          "speaker": 345945,
+          "predicate": {
+            "kind": "last_house_on_street",
+            "params": {
+              "street": "Kestrel Ave"
+            }
+          },
+          "rendered": "lives in the last house on Kestrel Ave"
+        },
+        {
+          "speaker": 345945,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "Hyundai",
+              "model": "Sonata"
+            }
+          },
+          "rendered": "drives a Hyundai Sonata"
+        },
+        {
+          "speaker": 345945,
+          "predicate": {
+            "kind": "age_range",
+            "params": {
+              "lo": 26,
+              "hi": 31
+            }
+          },
+          "rendered": "looked between 26 and 31 years old"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 970570,
+      "name": "Pauline Dean",
+      "clues": [
+        {
+          "speaker": 50646,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "ZDN7"
+            }
+          },
+          "rendered": "has a license plate containing \"ZDN7\""
+        },
+        {
+          "speaker": 50646,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 80,
+              "hi": 82
+            }
+          },
+          "rendered": "was between 6'8\" and 6'10\" tall"
+        },
+        {
+          "speaker": 50646,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 50646,
+              "date": 20180903
+            }
+          },
+          "rendered": "phoned me on September 3, 2018; check my phone records"
+        },
+        {
+          "speaker": 50646,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Clinton St"
+            }
+          },
+          "rendered": "lives on Clinton St"
+        }
+      ]
+    },
+    {
+      "role": "mastermind",
+      "person_id": 352588,
+      "name": "Nina Sharp",
+      "clues": [
+        {
+          "speaker": 970570,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Film Festival",
+              "lo": 20180601,
+              "hi": 20180630,
+              "count": 3
+            }
+          },
+          "rendered": "went to the Film Festival exactly 3 times in June 2018"
+        },
+        {
+          "speaker": 970570,
+          "predicate": {
+            "kind": "income_rank_on_street",
+            "params": {
+              "street": "Lowland Ave"
+            }
+          },
+          "rendered": "is the highest earner on Lowland Ave"
+        },
+        {
+          "speaker": 970570,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "black"
+            }
+          },
+          "rendered": "has black hair"
+        },
+        {
+          "speaker": 970570,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "blue"
+            }
+          },
+          "rendered": "had blue eyes"
+        }
+      ]
+    }
+  ]
+}

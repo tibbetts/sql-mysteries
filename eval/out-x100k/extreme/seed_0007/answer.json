@@ -1,0 +1,612 @@
+{
+  "tier": "extreme",
+  "seed": 7,
+  "crime_date": 20171223,
+  "crime_city": "Join Junction",
+  "persons": 100000,
+  "murderer": "Betty Fields",
+  "mastermind": "Christine Hensley",
+  "dirty": {
+    "event_date_text": true,
+    "checkin_time_text": true
+  },
+  "hops": [
+    {
+      "role": "witness",
+      "person_id": 947215,
+      "name": "Gregory Thomas",
+      "clues": [
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Elm Ct"
+            }
+          },
+          "rendered": "lives on Elm Ct"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "red"
+            }
+          },
+          "rendered": "had red hair"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "Nissan",
+              "model": "Sentra"
+            }
+          },
+          "rendered": "drives a Nissan Sentra"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "HJ6"
+            }
+          },
+          "rendered": "has a license plate containing \"HJ6\""
+        }
+      ]
+    },
+    {
+      "role": "witness",
+      "person_id": 833940,
+      "name": "Brian Andrews",
+      "clues": [
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Liberty St"
+            }
+          },
+          "rendered": "lives on Liberty St"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "HFFV"
+            }
+          },
+          "rendered": "drove a car whose license plate had \"HFFV\" in it"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20171216,
+              "t_lo": 1603,
+              "t_hi": 1803
+            }
+          },
+          "rendered": "checked in at the Get Fit Now gym on December 16, 2017 sometime between 4:03pm and 6:03pm"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "was a woman"
+        }
+      ]
+    },
+    {
+      "role": "murderer",
+      "person_id": 623249,
+      "name": "Betty Fields",
+      "clues": [
+        {
+          "speaker": 947215,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Antique Roadshow",
+              "lo": 20171101,
+              "hi": 20171130,
+              "count": 3
+            }
+          },
+          "rendered": "checked in at the Antique Roadshow 3 times during November 2017"
+        },
+        {
+          "speaker": 833940,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Cardinal Pl"
+            }
+          },
+          "rendered": "has a place somewhere on Cardinal Pl"
+        },
+        {
+          "speaker": 947215,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "was a woman"
+        },
+        {
+          "speaker": 833940,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20171130
+            }
+          },
+          "rendered": "made the single longest phone call of anyone on November 30, 2017"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 702875,
+      "name": "Brian Tate",
+      "clues": [
+        {
+          "speaker": 623249,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Robotics Fair",
+              "lo": 20170901,
+              "hi": 20170930,
+              "count": 2
+            }
+          },
+          "rendered": "checked in at the Robotics Fair 2 times during September 2017"
+        },
+        {
+          "speaker": 623249,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Hawthorn Way"
+            }
+          },
+          "rendered": "has a place somewhere on Hawthorn Way"
+        },
+        {
+          "speaker": 623249,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20171217
+            }
+          },
+          "rendered": "was on the phone longer than anybody else that day, December 17, 2017"
+        },
+        {
+          "speaker": 623249,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "male"
+            }
+          },
+          "rendered": "was a man"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 775073,
+      "name": "Rita Walters",
+      "clues": [
+        {
+          "speaker": 702875,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 50000,
+              "lo": 20171120,
+              "hi": 20171220
+            }
+          },
+          "rendered": "received a bank transfer of more than $50,000 sometime between November 20, 2017 and December 20, 2017"
+        },
+        {
+          "speaker": 702875,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "green"
+            }
+          },
+          "rendered": "had green eyes"
+        },
+        {
+          "speaker": 702875,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 702875,
+              "date": 20171218
+            }
+          },
+          "rendered": "phoned me on December 18, 2017; check my phone records"
+        },
+        {
+          "speaker": 702875,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 61,
+              "hi": 63
+            }
+          },
+          "rendered": "was between 5'1\" and 5'3\" tall"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 735951,
+      "name": "Matthew Curtis",
+      "clues": [
+        {
+          "speaker": 775073,
+          "predicate": {
+            "kind": "transfer_from_known",
+            "params": {
+              "to": 775073,
+              "date": 20171217
+            }
+          },
+          "rendered": "paid me by bank transfer on December 17, 2017"
+        },
+        {
+          "speaker": 775073,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 775073,
+              "date": 20171222
+            }
+          },
+          "rendered": "phoned me on December 22, 2017; check my phone records"
+        },
+        {
+          "speaker": 775073,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "grey"
+            }
+          },
+          "rendered": "has grey eyes"
+        },
+        {
+          "speaker": 775073,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Crimson Ter"
+            }
+          },
+          "rendered": "lives on Crimson Ter"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 189568,
+      "name": "Jimmy Fowler",
+      "clues": [
+        {
+          "speaker": 735951,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 50000,
+              "lo": 20171121,
+              "hi": 20171220
+            }
+          },
+          "rendered": "was paid over $50,000 by wire between November 21, 2017 and December 20, 2017"
+        },
+        {
+          "speaker": 735951,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Winter Ice Gala",
+              "never": "Wine and Paint"
+            }
+          },
+          "rendered": "always goes to the Winter Ice Gala and refuses to go to the Wine and Paint"
+        },
+        {
+          "speaker": 735951,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "grey"
+            }
+          },
+          "rendered": "had grey hair"
+        },
+        {
+          "speaker": 735951,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "is a woman"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 215013,
+      "name": "Willie Paul",
+      "clues": [
+        {
+          "speaker": 189568,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 62,
+              "hi": 64
+            }
+          },
+          "rendered": "stood somewhere from 62 to 64 inches"
+        },
+        {
+          "speaker": 189568,
+          "predicate": {
+            "kind": "transfer_from_known",
+            "params": {
+              "to": 189568,
+              "date": 20171221
+            }
+          },
+          "rendered": "wired money to my bank account on December 21, 2017"
+        },
+        {
+          "speaker": 189568,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Fireworks Spectacular",
+              "lo": 20170901,
+              "hi": 20170930,
+              "count": 3
+            }
+          },
+          "rendered": "went to the Fireworks Spectacular exactly 3 times in September 2017"
+        },
+        {
+          "speaker": 189568,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 189568,
+              "date": 20171223
+            }
+          },
+          "rendered": "called me on December 23, 2017"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 738607,
+      "name": "Eric May",
+      "clues": [
+        {
+          "speaker": 215013,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20171127
+            }
+          },
+          "rendered": "was on the phone longer than anybody else that day, November 27, 2017"
+        },
+        {
+          "speaker": 215013,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "gold",
+              "prefix": "55"
+            }
+          },
+          "rendered": "is a gold member at Get Fit Now with a membership id beginning \"55\""
+        },
+        {
+          "speaker": 215013,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "SQL Symphony Concert",
+              "never": "Antique Roadshow"
+            }
+          },
+          "rendered": "always goes to the SQL Symphony Concert and refuses to go to the Antique Roadshow"
+        },
+        {
+          "speaker": 215013,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 20000,
+              "lo": 20171208,
+              "hi": 20171222
+            }
+          },
+          "rendered": "was paid over $20,000 by wire between December 8, 2017 and December 22, 2017"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 238934,
+      "name": "Constance Martinez",
+      "clues": [
+        {
+          "speaker": 738607,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "silver",
+              "prefix": "60"
+            }
+          },
+          "rendered": "is a silver member at Get Fit Now with a membership id beginning \"60\""
+        },
+        {
+          "speaker": 738607,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "was a woman"
+        },
+        {
+          "speaker": 738607,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20171203
+            }
+          },
+          "rendered": "was on the phone longer than anybody else that day, December 3, 2017"
+        },
+        {
+          "speaker": 738607,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "green"
+            }
+          },
+          "rendered": "has green eyes"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 155217,
+      "name": "Vera Warner",
+      "clues": [
+        {
+          "speaker": 238934,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 71,
+              "hi": 73
+            }
+          },
+          "rendered": "stood somewhere from 71 to 73 inches"
+        },
+        {
+          "speaker": 238934,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20171212
+            }
+          },
+          "rendered": "was on the phone longer than anybody else that day, December 12, 2017"
+        },
+        {
+          "speaker": 238934,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "regular",
+              "prefix": "46F"
+            }
+          },
+          "rendered": "is a regular member at Get Fit Now with a membership id beginning \"46F\""
+        },
+        {
+          "speaker": 238934,
+          "predicate": {
+            "kind": "income_rank_on_street",
+            "params": {
+              "street": "Ridge Ln"
+            }
+          },
+          "rendered": "is the highest earner on Ridge Ln"
+        }
+      ]
+    },
+    {
+      "role": "mastermind",
+      "person_id": 326161,
+      "name": "Christine Hensley",
+      "clues": [
+        {
+          "speaker": 155217,
+          "predicate": {
+            "kind": "income_rank_on_street",
+            "params": {
+              "street": "Jackson Ave"
+            }
+          },
+          "rendered": "is the highest earner on Jackson Ave"
+        },
+        {
+          "speaker": 155217,
+          "predicate": {
+            "kind": "age_range",
+            "params": {
+              "lo": 19,
+              "hi": 24
+            }
+          },
+          "rendered": "looked between 19 and 24 years old"
+        },
+        {
+          "speaker": 155217,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "silver",
+              "prefix": "14W"
+            }
+          },
+          "rendered": "is a silver member at Get Fit Now with a membership id beginning \"14W\""
+        },
+        {
+          "speaker": 155217,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "white"
+            }
+          },
+          "rendered": "had white hair"
+        }
+      ]
+    }
+  ]
+}

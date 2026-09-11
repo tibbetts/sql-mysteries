@@ -1,0 +1,624 @@
+{
+  "tier": "extreme",
+  "seed": 2,
+  "crime_date": 20190912,
+  "crime_city": "Cascade",
+  "persons": 100000,
+  "murderer": "Elizabeth Vega",
+  "mastermind": "Kimberly Quinn",
+  "dirty": {
+    "event_date_text": true,
+    "checkin_time_text": true
+  },
+  "hops": [
+    {
+      "role": "witness",
+      "person_id": 400476,
+      "name": "Vera Young",
+      "clues": [
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Food Truck Friday",
+              "lo": 20190501,
+              "hi": 20190531,
+              "count": 3
+            }
+          },
+          "rendered": "went to the Food Truck Friday exactly 3 times in May 2019"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "Infiniti",
+              "model": "Q50"
+            }
+          },
+          "rendered": "drives a Infiniti Q50"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "S3S"
+            }
+          },
+          "rendered": "drove a car whose license plate had \"S3S\" in it"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20190825,
+              "t_lo": 1126,
+              "t_hi": 1326
+            }
+          },
+          "rendered": "was working out at Get Fit Now on August 25, 2019, arriving sometime between 11:26am and 1:26pm"
+        }
+      ]
+    },
+    {
+      "role": "witness",
+      "person_id": 181737,
+      "name": "Mary Williamson",
+      "clues": [
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "age_range",
+            "params": {
+              "lo": 66,
+              "hi": 70
+            }
+          },
+          "rendered": "aged somewhere from 66 to 70"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "is a woman"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "grey"
+            }
+          },
+          "rendered": "had grey hair"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "brown"
+            }
+          },
+          "rendered": "has brown eyes"
+        }
+      ]
+    },
+    {
+      "role": "murderer",
+      "person_id": 846631,
+      "name": "Elizabeth Vega",
+      "clues": [
+        {
+          "speaker": 400476,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20190829,
+              "t_lo": 1641,
+              "t_hi": 1841
+            }
+          },
+          "rendered": "checked in at the Get Fit Now gym on August 29, 2019 sometime between 4:41pm and 6:41pm"
+        },
+        {
+          "speaker": 181737,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "blonde"
+            }
+          },
+          "rendered": "had blonde hair"
+        },
+        {
+          "speaker": 400476,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "silver",
+              "prefix": "86V"
+            }
+          },
+          "rendered": "is a silver member at Get Fit Now with a membership id beginning \"86V\""
+        },
+        {
+          "speaker": 181737,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20190823
+            }
+          },
+          "rendered": "made the single longest phone call of anyone on August 23, 2019"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 869021,
+      "name": "Paula Barrett",
+      "clues": [
+        {
+          "speaker": 846631,
+          "predicate": {
+            "kind": "transfer_from_known",
+            "params": {
+              "to": 846631,
+              "date": 20190912
+            }
+          },
+          "rendered": "paid me by bank transfer on September 12, 2019"
+        },
+        {
+          "speaker": 846631,
+          "predicate": {
+            "kind": "age_range",
+            "params": {
+              "lo": 34,
+              "hi": 39
+            }
+          },
+          "rendered": "looked between 34 and 39 years old"
+        },
+        {
+          "speaker": 846631,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20190906,
+              "t_lo": 827,
+              "t_hi": 1027
+            }
+          },
+          "rendered": "was working out at Get Fit Now on September 6, 2019, arriving sometime between 8:27am and 10:27am"
+        },
+        {
+          "speaker": 846631,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "male"
+            }
+          },
+          "rendered": "is a man"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 71824,
+      "name": "Brenda Houston",
+      "clues": [
+        {
+          "speaker": 869021,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 59,
+              "hi": 62
+            }
+          },
+          "rendered": "was between 4'11\" and 5'2\" tall"
+        },
+        {
+          "speaker": 869021,
+          "predicate": {
+            "kind": "income_rank_on_street",
+            "params": {
+              "street": "Roosevelt St"
+            }
+          },
+          "rendered": "is the highest earner on Roosevelt St"
+        },
+        {
+          "speaker": 869021,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 50000,
+              "lo": 20190823,
+              "hi": 20190911
+            }
+          },
+          "rendered": "was paid over $50,000 by wire between August 23, 2019 and September 11, 2019"
+        },
+        {
+          "speaker": 869021,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20190820
+            }
+          },
+          "rendered": "was on the phone longer than anybody else that day, August 20, 2019"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 967887,
+      "name": "Geraldine Horton",
+      "clues": [
+        {
+          "speaker": 71824,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "gold",
+              "prefix": "91F"
+            }
+          },
+          "rendered": "is a gold member at Get Fit Now with a membership id beginning \"91F\""
+        },
+        {
+          "speaker": 71824,
+          "predicate": {
+            "kind": "age_range",
+            "params": {
+              "lo": 54,
+              "hi": 60
+            }
+          },
+          "rendered": "looked between 54 and 60 years old"
+        },
+        {
+          "speaker": 71824,
+          "predicate": {
+            "kind": "transfer_from_known",
+            "params": {
+              "to": 71824,
+              "date": 20190905
+            }
+          },
+          "rendered": "wired money to my bank account on September 5, 2019"
+        },
+        {
+          "speaker": 71824,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Beech St"
+            }
+          },
+          "rendered": "has a place somewhere on Beech St"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 65071,
+      "name": "Laura Gordon",
+      "clues": [
+        {
+          "speaker": 967887,
+          "predicate": {
+            "kind": "income_rank_on_street",
+            "params": {
+              "street": "Hamilton Blvd"
+            }
+          },
+          "rendered": "is the highest earner on Hamilton Blvd"
+        },
+        {
+          "speaker": 967887,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 967887,
+              "date": 20190903
+            }
+          },
+          "rendered": "called me on September 3, 2019"
+        },
+        {
+          "speaker": 967887,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Comic Convention",
+              "lo": 20190801,
+              "hi": 20190831,
+              "count": 3
+            }
+          },
+          "rendered": "went to the Comic Convention exactly 3 times in August 2019"
+        },
+        {
+          "speaker": 967887,
+          "predicate": {
+            "kind": "age_range",
+            "params": {
+              "lo": 48,
+              "hi": 52
+            }
+          },
+          "rendered": "aged somewhere from 48 to 52"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 44917,
+      "name": "Jennifer Watts",
+      "clues": [
+        {
+          "speaker": 65071,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Opera Gala",
+              "never": "Farmers Market"
+            }
+          },
+          "rendered": "always goes to the Opera Gala and refuses to go to the Farmers Market"
+        },
+        {
+          "speaker": 65071,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "Nissan",
+              "model": "Altima"
+            }
+          },
+          "rendered": "got into a Nissan Altima"
+        },
+        {
+          "speaker": 65071,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Amber St"
+            }
+          },
+          "rendered": "has a place somewhere on Amber St"
+        },
+        {
+          "speaker": 65071,
+          "predicate": {
+            "kind": "transfer_from_known",
+            "params": {
+              "to": 65071,
+              "date": 20190911
+            }
+          },
+          "rendered": "wired money to my bank account on September 11, 2019"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 765207,
+      "name": "Adam Nash",
+      "clues": [
+        {
+          "speaker": 44917,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Winter Ice Gala",
+              "never": "Antique Roadshow"
+            }
+          },
+          "rendered": "has been to the Winter Ice Gala but has never once been to the Antique Roadshow"
+        },
+        {
+          "speaker": 44917,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 25000,
+              "lo": 20190821,
+              "hi": 20190912
+            }
+          },
+          "rendered": "was paid over $25,000 by wire between August 21, 2019 and September 12, 2019"
+        },
+        {
+          "speaker": 44917,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "gold",
+              "prefix": "44X"
+            }
+          },
+          "rendered": "carried a Get Fit Now gym bag; the membership number on it started with \"44X\" and only gold members get those bags"
+        },
+        {
+          "speaker": 44917,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 63,
+              "hi": 66
+            }
+          },
+          "rendered": "height around 5'3\" to 5'6\", I would say"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 713036,
+      "name": "Johnny Fleming",
+      "clues": [
+        {
+          "speaker": 765207,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 20000,
+              "lo": 20190827,
+              "hi": 20190912
+            }
+          },
+          "rendered": "received a bank transfer of more than $20,000 sometime between August 27, 2019 and September 12, 2019"
+        },
+        {
+          "speaker": 765207,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Chili Cookoff",
+              "lo": 20190601,
+              "hi": 20190630,
+              "count": 4
+            }
+          },
+          "rendered": "went to the Chili Cookoff exactly 4 times in June 2019"
+        },
+        {
+          "speaker": 765207,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Maple Way"
+            }
+          },
+          "rendered": "lives on Maple Way"
+        },
+        {
+          "speaker": 765207,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "was a woman"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 203818,
+      "name": "Melissa Marsh",
+      "clues": [
+        {
+          "speaker": 713036,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 66,
+              "hi": 69
+            }
+          },
+          "rendered": "stood somewhere from 66 to 69 inches"
+        },
+        {
+          "speaker": 713036,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "male"
+            }
+          },
+          "rendered": "is a man"
+        },
+        {
+          "speaker": 713036,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "black"
+            }
+          },
+          "rendered": "had black eyes"
+        },
+        {
+          "speaker": 713036,
+          "predicate": {
+            "kind": "transfer_from_known",
+            "params": {
+              "to": 713036,
+              "date": 20190905
+            }
+          },
+          "rendered": "wired money to my bank account on September 5, 2019"
+        }
+      ]
+    },
+    {
+      "role": "mastermind",
+      "person_id": 786870,
+      "name": "Kimberly Quinn",
+      "clues": [
+        {
+          "speaker": 203818,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Startup Pitch Night",
+              "lo": 20190501,
+              "hi": 20190531,
+              "count": 4
+            }
+          },
+          "rendered": "went to the Startup Pitch Night exactly 4 times in May 2019"
+        },
+        {
+          "speaker": 203818,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 25000,
+              "lo": 20190903,
+              "hi": 20190910
+            }
+          },
+          "rendered": "received a bank transfer of more than $25,000 sometime between September 3, 2019 and September 10, 2019"
+        },
+        {
+          "speaker": 203818,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Eagle St"
+            }
+          },
+          "rendered": "lives on Eagle St"
+        },
+        {
+          "speaker": 203818,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "52M"
+            }
+          },
+          "rendered": "drove a car whose license plate had \"52M\" in it"
+        }
+      ]
+    }
+  ]
+}

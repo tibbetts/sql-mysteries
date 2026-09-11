@@ -19,3 +19,15 @@ def test_tiers_scale_population():
     assert small.persons == 500
     assert small.chain_length == hard.chain_length
     assert hard.persons == 200_000
+
+
+def test_tier_knobs_and_named_variants():
+    from sqlmystery.config import TIERS, Tier
+    base = TIERS["hard"]
+    assert base.branching == 0 and base.fuzzy is False
+    full = TIERS["hard-full"]
+    assert full.branching >= 2 and full.fuzzy is True
+    assert full.persons == base.persons and full.chain_length == base.chain_length
+    assert TIERS["hard-branching"].fuzzy is False and TIERS["hard-branching"].branching >= 2
+    assert TIERS["hard-fuzzy"].branching == 0 and TIERS["hard-fuzzy"].fuzzy
+    assert base.with_knobs(branching=3, fuzzy=True).name == "hard-b3-fuzzy"

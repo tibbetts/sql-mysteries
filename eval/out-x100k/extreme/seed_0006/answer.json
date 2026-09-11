@@ -1,0 +1,610 @@
+{
+  "tier": "extreme",
+  "seed": 6,
+  "crime_date": 20190228,
+  "crime_city": "Merge Harbor",
+  "persons": 100000,
+  "murderer": "Tammy Norton",
+  "mastermind": "Darlene Adams",
+  "dirty": {
+    "event_date_text": true,
+    "checkin_time_text": true
+  },
+  "hops": [
+    {
+      "role": "witness",
+      "person_id": 215881,
+      "name": "Tina Blair",
+      "clues": [
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "brown"
+            }
+          },
+          "rendered": "has brown eyes"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "is a woman"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "2DY"
+            }
+          },
+          "rendered": "drove a car whose license plate had \"2DY\" in it"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Justice Ct"
+            }
+          },
+          "rendered": "has a place somewhere on Justice Ct"
+        }
+      ]
+    },
+    {
+      "role": "witness",
+      "person_id": 355284,
+      "name": "Calvin Pena",
+      "clues": [
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "street",
+            "params": {
+              "street": "Wright Ln"
+            }
+          },
+          "rendered": "lives on Wright Ln"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "age_range",
+            "params": {
+              "lo": 73,
+              "hi": 78
+            }
+          },
+          "rendered": "looked between 73 and 78 years old"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "is a woman"
+        },
+        {
+          "speaker": null,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "gold",
+              "prefix": "67"
+            }
+          },
+          "rendered": "is a gold member at Get Fit Now with a membership id beginning \"67\""
+        }
+      ]
+    },
+    {
+      "role": "murderer",
+      "person_id": 896155,
+      "name": "Tammy Norton",
+      "clues": [
+        {
+          "speaker": 215881,
+          "predicate": {
+            "kind": "gym_status_prefix",
+            "params": {
+              "status": "silver",
+              "prefix": "40N"
+            }
+          },
+          "rendered": "carried a Get Fit Now gym bag; the membership number on it started with \"40N\" and only silver members get those bags"
+        },
+        {
+          "speaker": 355284,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Trivia Tuesday",
+              "never": "Startup Pitch Night"
+            }
+          },
+          "rendered": "has been to the Trivia Tuesday but has never once been to the Startup Pitch Night"
+        },
+        {
+          "speaker": 215881,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 215881,
+              "date": 20190220
+            }
+          },
+          "rendered": "called me on February 20, 2019"
+        },
+        {
+          "speaker": 355284,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20190223,
+              "t_lo": 1057,
+              "t_hi": 1257
+            }
+          },
+          "rendered": "was working out at Get Fit Now on February 23, 2019, arriving sometime between 10:57am and 12:57pm"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 160554,
+      "name": "Corey Maldonado",
+      "clues": [
+        {
+          "speaker": 896155,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "Ford",
+              "model": "Focus"
+            }
+          },
+          "rendered": "drives a Ford Focus"
+        },
+        {
+          "speaker": 896155,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20190216
+            }
+          },
+          "rendered": "made the single longest phone call of anyone on February 16, 2019"
+        },
+        {
+          "speaker": 896155,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "male"
+            }
+          },
+          "rendered": "was a man"
+        },
+        {
+          "speaker": 896155,
+          "predicate": {
+            "kind": "gym_checkin_window",
+            "params": {
+              "date": 20190222,
+              "t_lo": 735,
+              "t_hi": 935
+            }
+          },
+          "rendered": "checked in at the Get Fit Now gym on February 22, 2019 sometime between 7:35am and 9:35am"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 757948,
+      "name": "Brian Walton",
+      "clues": [
+        {
+          "speaker": 160554,
+          "predicate": {
+            "kind": "longest_call_on_date",
+            "params": {
+              "date": 20190207
+            }
+          },
+          "rendered": "was on the phone longer than anybody else that day, February 7, 2019"
+        },
+        {
+          "speaker": 160554,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "blue"
+            }
+          },
+          "rendered": "has blue eyes"
+        },
+        {
+          "speaker": 160554,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "was a woman"
+        },
+        {
+          "speaker": 160554,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 10000,
+              "lo": 20190219,
+              "hi": 20190227
+            }
+          },
+          "rendered": "received a bank transfer of more than $10,000 sometime between February 19, 2019 and February 27, 2019"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 604141,
+      "name": "Barbara Craig",
+      "clues": [
+        {
+          "speaker": 757948,
+          "predicate": {
+            "kind": "last_house_on_street",
+            "params": {
+              "street": "Azure Dr"
+            }
+          },
+          "rendered": "has the highest house number on Azure Dr"
+        },
+        {
+          "speaker": 757948,
+          "predicate": {
+            "kind": "transfer_from_known",
+            "params": {
+              "to": 757948,
+              "date": 20190228
+            }
+          },
+          "rendered": "wired money to my bank account on February 28, 2019"
+        },
+        {
+          "speaker": 757948,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "red"
+            }
+          },
+          "rendered": "has red hair"
+        },
+        {
+          "speaker": 757948,
+          "predicate": {
+            "kind": "event_count",
+            "params": {
+              "event": "Book Fair",
+              "lo": 20190201,
+              "hi": 20190228,
+              "count": 2
+            }
+          },
+          "rendered": "went to the Book Fair exactly 2 times in February 2019"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 520219,
+      "name": "Jamie Shaw",
+      "clues": [
+        {
+          "speaker": 604141,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "0JQ"
+            }
+          },
+          "rendered": "has a license plate containing \"0JQ\""
+        },
+        {
+          "speaker": 604141,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "green"
+            }
+          },
+          "rendered": "had green eyes"
+        },
+        {
+          "speaker": 604141,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 604141,
+              "date": 20190226
+            }
+          },
+          "rendered": "phoned me on February 26, 2019; check my phone records"
+        },
+        {
+          "speaker": 604141,
+          "predicate": {
+            "kind": "height_range",
+            "params": {
+              "lo": 56,
+              "hi": 59
+            }
+          },
+          "rendered": "was between 4'8\" and 4'11\" tall"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 765788,
+      "name": "Maxine Huff",
+      "clues": [
+        {
+          "speaker": 520219,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Rock the River",
+              "never": "Holiday Lights Parade"
+            }
+          },
+          "rendered": "has been to the Rock the River but has never once been to the Holiday Lights Parade"
+        },
+        {
+          "speaker": 520219,
+          "predicate": {
+            "kind": "transfer_from_known",
+            "params": {
+              "to": 520219,
+              "date": 20190225
+            }
+          },
+          "rendered": "paid me by bank transfer on February 25, 2019"
+        },
+        {
+          "speaker": 520219,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "amber"
+            }
+          },
+          "rendered": "has amber eyes"
+        },
+        {
+          "speaker": 520219,
+          "predicate": {
+            "kind": "last_house_on_street",
+            "params": {
+              "street": "Palmer Ave"
+            }
+          },
+          "rendered": "lives in the last house on Palmer Ave"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 860992,
+      "name": "Melvin Goodman",
+      "clues": [
+        {
+          "speaker": 765788,
+          "predicate": {
+            "kind": "eye_color",
+            "params": {
+              "value": "brown"
+            }
+          },
+          "rendered": "had brown eyes"
+        },
+        {
+          "speaker": 765788,
+          "predicate": {
+            "kind": "received_transfer_over",
+            "params": {
+              "amount": 25000,
+              "lo": 20190215,
+              "hi": 20190225
+            }
+          },
+          "rendered": "received a bank transfer of more than $25,000 sometime between February 15, 2019 and February 25, 2019"
+        },
+        {
+          "speaker": 765788,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Opera Gala",
+              "never": "Startup Pitch Night"
+            }
+          },
+          "rendered": "always goes to the Opera Gala and refuses to go to the Startup Pitch Night"
+        },
+        {
+          "speaker": 765788,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "X10P"
+            }
+          },
+          "rendered": "has a license plate containing \"X10P\""
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 333684,
+      "name": "Todd Bryant",
+      "clues": [
+        {
+          "speaker": 860992,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "GMC",
+              "model": "Sierra"
+            }
+          },
+          "rendered": "drives a GMC Sierra"
+        },
+        {
+          "speaker": 860992,
+          "predicate": {
+            "kind": "event_and_never",
+            "params": {
+              "event": "Funky Grooves Tour",
+              "never": "Startup Pitch Night"
+            }
+          },
+          "rendered": "has been to the Funky Grooves Tour but has never once been to the Startup Pitch Night"
+        },
+        {
+          "speaker": 860992,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 860992,
+              "date": 20190224
+            }
+          },
+          "rendered": "phoned me on February 24, 2019; check my phone records"
+        },
+        {
+          "speaker": 860992,
+          "predicate": {
+            "kind": "plate_fragment",
+            "params": {
+              "fragment": "689"
+            }
+          },
+          "rendered": "drove a car whose license plate had \"689\" in it"
+        }
+      ]
+    },
+    {
+      "role": "accomplice",
+      "person_id": 299228,
+      "name": "Claire Stephens",
+      "clues": [
+        {
+          "speaker": 333684,
+          "predicate": {
+            "kind": "hair_color",
+            "params": {
+              "value": "white"
+            }
+          },
+          "rendered": "had white hair"
+        },
+        {
+          "speaker": 333684,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "male"
+            }
+          },
+          "rendered": "is a man"
+        },
+        {
+          "speaker": 333684,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 333684,
+              "date": 20190225
+            }
+          },
+          "rendered": "phoned me on February 25, 2019; check my phone records"
+        },
+        {
+          "speaker": 333684,
+          "predicate": {
+            "kind": "car",
+            "params": {
+              "make": "Honda",
+              "model": "Civic"
+            }
+          },
+          "rendered": "got into a Honda Civic"
+        }
+      ]
+    },
+    {
+      "role": "mastermind",
+      "person_id": 431257,
+      "name": "Darlene Adams",
+      "clues": [
+        {
+          "speaker": 299228,
+          "predicate": {
+            "kind": "transfer_from_known",
+            "params": {
+              "to": 299228,
+              "date": 20190225
+            }
+          },
+          "rendered": "wired money to my bank account on February 25, 2019"
+        },
+        {
+          "speaker": 299228,
+          "predicate": {
+            "kind": "age_range",
+            "params": {
+              "lo": 64,
+              "hi": 69
+            }
+          },
+          "rendered": "looked between 64 and 69 years old"
+        },
+        {
+          "speaker": 299228,
+          "predicate": {
+            "kind": "gender",
+            "params": {
+              "value": "female"
+            }
+          },
+          "rendered": "was a woman"
+        },
+        {
+          "speaker": 299228,
+          "predicate": {
+            "kind": "called_person",
+            "params": {
+              "callee": 299228,
+              "date": 20190225
+            }
+          },
+          "rendered": "phoned me on February 25, 2019; check my phone records"
+        }
+      ]
+    }
+  ]
+}

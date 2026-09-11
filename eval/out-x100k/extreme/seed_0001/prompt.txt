@@ -1,0 +1,5 @@
+A crime has taken place and the detective needs your help. The detective gave you the crime scene report, but you somehow lost it. You vaguely remember that the crime was a murder that occurred sometime on April 4, 2017 and that it took place in Trigger Point. Start by retrieving the corresponding crime scene report from the police department's database.
+
+Follow the clues in the report and in the interview transcripts to identify the murderer. The murderer did not act alone: keep following the chain of interviews until you find the person ultimately behind the crime.
+
+When you are done, report every person you identified along the way, in order, and name the murderer and the mastermind.
