@@ -151,3 +151,30 @@ def test_branching_json_roundtrip():
     back = Chain.from_json(d)
     assert back.to_json() == d
     assert sum(len(h.rivals) for h in back.hops) == sum(len(h.rivals) for h in chain.hops) > 0
+
+
+def test_alibi_sql_matches_either_call_direction():
+    from sqlmystery.chain import alibi_sql
+    db = Db(":memory:")
+    db.create_schema()
+    db.execute("INSERT INTO person (id, name) VALUES (1,'A'),(2,'B')")
+    db.execute("INSERT INTO phone_call VALUES (2, 1, 20180115, 2130, 4000)")  # 1 is the callee
+    assert db.ids(alibi_sql(1, 20180115, 2200)) == [1]
+    assert db.ids(alibi_sql(2, 20180115, 2200)) == [2]
+    assert db.ids(alibi_sql(1, 20180115, 2000)) == []
+
+
+def test_impossible_predicates_look_like_real_values():
+    import re
+    db, rng, tier, info, chain = make_knobs(4, branching=2, fuzzy=False)
+    seen = set()
+    for hop in chain.hops:
+        for r in hop.rivals:
+            for c in r.exclusion.clues:
+                p = c.predicate
+                if p.kind == "gym_status_prefix" and len(p.params["prefix"]) == 4:
+                    assert re.fullmatch(r"\d\d[A-Z][0-9A-Z]", p.params["prefix"]), p.params
+                    seen.add("gym")
+                if p.kind == "plate_fragment" and len(p.params["fragment"]) == 5:
+                    seen.add("plate")
+    assert seen

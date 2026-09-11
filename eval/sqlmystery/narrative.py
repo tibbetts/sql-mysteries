@@ -97,7 +97,7 @@ def write_narrative(db: Db, rng: random.Random, chain: Chain, info: WorldInfo) -
                 start = human_time(ex.params["start_time"])
                 text = rng.choice([
                     f"I know how this looks, but I could not have done it. I was on the phone from about {start} that evening for over an hour. Check the phone records.",
-                    f"Whoever you are looking for, it is not me. I got a call around {start} and was on the phone for more than an hour. The phone company will confirm it.",
+                    f"Whoever you are looking for, it is not me. I was on the phone from around {start} for more than an hour. The phone company will confirm it.",
                 ])
             else:
                 text = _hired_transcript(rng, hop.role, ex.clues)

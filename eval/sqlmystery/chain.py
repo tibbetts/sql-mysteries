@@ -120,8 +120,8 @@ def conjunction_sql(preds: list[Predicate], ctx: Ctx) -> str:
 
 
 def alibi_sql(pid: int, crime_date: int, crime_time: int) -> str:
-    """A call by pid that started within the hour before the murder and lasted at least an hour."""
-    return (f"SELECT DISTINCT caller_id FROM phone_call WHERE caller_id={pid} AND date={crime_date} "
+    """A call involving pid that started within the hour before the murder and lasted at least an hour."""
+    return (f"SELECT DISTINCT {pid} FROM phone_call WHERE (caller_id={pid} OR callee_id={pid}) AND date={crime_date} "
             f"AND start_time BETWEEN {add_minutes(crime_time, -60)} AND {crime_time} AND duration_sec >= 3600")
 
 
@@ -233,7 +233,8 @@ class _Builder:
             hop.rivals.append(Rival(rid, name, exclusion))
         if hop.role == "murderer":
             # the true murderer must not have an alibi-shaped call
-            db.execute(f"DELETE FROM phone_call WHERE caller_id IN ({alibi_sql(hop.person_id, self.info.crime_date, self.crime_time)})")
+            db.execute("DELETE FROM phone_call WHERE (caller_id=? OR callee_id=?) AND date=? AND start_time BETWEEN ? AND ? AND duration_sec >= 3600",
+                       (hop.person_id, hop.person_id, self.info.crime_date, add_minutes(self.crime_time, -60), self.crime_time))
 
         for pid in hop.expected_ids:
             for c in clues:
@@ -268,7 +269,8 @@ class _Builder:
         start = add_minutes(self.crime_time, -rng.randint(15, 55))
         duration = 3600 + rng.randint(0, 3600)
         callee = db.one("SELECT id FROM person WHERE id<>? ORDER BY id LIMIT 1 OFFSET ?", (rid, rng.randrange(len(self.all_ids) - 1)))[0]
-        db.execute("INSERT INTO phone_call VALUES (?,?,?,?,?)", (rid, callee, self.info.crime_date, start, duration))
+        a, b = (rid, callee) if rng.random() < 0.5 else (callee, rid)
+        db.execute("INSERT INTO phone_call VALUES (?,?,?,?,?)", (a, b, self.info.crime_date, start, duration))
         return Exclusion("alibi", rid, alibi_sql(rid, self.info.crime_date, self.crime_time),
                          params={"start_time": start, "duration_sec": duration})
 
@@ -295,7 +297,7 @@ class _Builder:
                 frag = "".join(rng.choice("ABCDEFGHJKLMNPQRSTUVWXYZ0123456789") for _ in range(5))
                 p = REGISTRY["plate_fragment"]({"fragment": frag})
             else:
-                prefix = "".join(rng.choice("ABCDEFGHJKLMNPQRSTUVWXYZ0123456789") for _ in range(4))
+                prefix = f"{rng.randint(10, 99)}{rng.choice('ABCDEFGHJKLMNPQRSTUVWXYZ')}{rng.choice('0123456789ABCDEFGHJKLMNPQRSTUVWXYZ')}"
                 p = REGISTRY["gym_status_prefix"]({"status": rng.choice(self.info.gym_statuses), "prefix": prefix})
             if not db.ids(p.sql(ctx)):
                 return p
